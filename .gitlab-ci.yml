@@ -10,7 +10,7 @@ graduator:
     - export USER=root
     - cd latex
   script:
-    - latexmk -pdf
+    - xelatex Tutkielma.tex
   artifacts:
     paths:
       - "*.pdf"
