@@ -5,10 +5,12 @@
 image: schickling/latex
 
 graduator:
+    
   before_script:
+    - export USER=root
     - cd latex
   script:
-    - latexmk -xelatex -pdf
+    - latexmk -pdf
   artifacts:
     paths:
       - "*.pdf"
