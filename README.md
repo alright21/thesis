@@ -1,12 +1,13 @@
 
- 
-** Why **
+TODO: latex introduction guide
+
+**Why**
   - No need for anyone to invent the wheel again. You can of course do that
     if you wish - TeX'll even let you invent many different kinds of wheels
-  - That said, if you come up with a great new wheel I'd like to hear about 
-    it - it might even end up being used here 
+  - That said, if you come up with a great new wheel, we would like to hear about 
+    it - it might even end up being used here. Merge requests are welcome!
  
-** Features **
+**Features**
   - Proper page sizes as required by university guide for students:
       - proper font sizes as well as linespacings
       - proper size of margins
@@ -38,11 +39,11 @@
       - consultation of the manuals of these packages is strongly
         encouraged 
 
-** Assumptions **
+**Assumptions**
   - itpackage.sty file is available 
   - each chapter is as a separate file which is read in with e.g. \input
    
-** Miscellaneous **
+**Miscellaneous**
   - comments are welcome
   - should a required package be missing see http://www.ctan.org/ 
   - http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf
