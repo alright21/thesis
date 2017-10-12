@@ -9,7 +9,7 @@ graduator:
   before_script:
     - cd latex
   script:
-    - xelatex Tutkielma.tex
+    - "latexmk -xelatex Tutkielma.tex"
   artifacts:
     paths:
       - "latex/*.pdf"
