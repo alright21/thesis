@@ -7,10 +7,9 @@ image: schickling/latex
 graduator:
     
   before_script:
-    - export USER=root
     - cd latex
   script:
-    - xelatex Tutkielma.tex
+    - lualatex Tutkielma.tex
   artifacts:
     paths:
       - "*.pdf"
