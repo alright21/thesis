@@ -1,0 +1,653 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass utuftthesis
+\options a4paper,12pt,language=finnish,hidechapters=false
+\use_default_options false
+\maintain_unincluded_children false
+\language finnish
+\language_package auto
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_pagemode FullScreen
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine biblatex
+\cite_engine_type authoryear
+\biblio_style plain
+\biblatex_bibstyle ieee
+\biblatex_citestyle ieee
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swedish
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% publication year
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pubyear{2018}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% publication month 1-12
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pubmonth{6}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% laboratory name
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+publab{Labran Nimi}{Laboratory Name}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% supports magic values: tkk, luk, gradu & di
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pubtype{tkk}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Name of Thesis
+\end_layout
+
+\begin_layout Author
+My Name
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "abstract.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% empty pagestyle for table of contents etc.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+% the redefinition of plain style works also for 1st pages of chapters,
+\end_layout
+
+\begin_layout Plain Layout
+
+% which is the default in report class.
+ Just state 
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+% after 
+\backslash
+chapter{something} if you want empty style for the 1st pages.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancypagestyle{plain}{
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fancyhf{}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+renewcommand{
+\backslash
+headrulewidth}{0 pt}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% roman numbering for table of contents etc.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{roman}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% insert table of contents, list of figures, list of tables
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+% setting the counter to zero effectively removes the page number from
+\end_layout
+
+\begin_layout Plain Layout
+
+% the toc, lof etc.
+ entries in the toc since there is no roman numeral
+\end_layout
+
+\begin_layout Plain Layout
+
+% for zero ;-) (if you want them without numbering)
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{page}{0}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tableofcontents
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+clearpage
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{page}{0}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+listoffigures 
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+clearpage
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{page}{0}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+listoftables
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% possibly insert 'list of acronyms'
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%   - create a chapter called List Of Acronyms (or whatever), which
+\end_layout
+
+\begin_layout Plain Layout
+
+%     should contain all your acronym definitions, e.g.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+%     
+\backslash
+chapter{List Of Acronyms} 
+\end_layout
+
+\begin_layout Plain Layout
+
+%   - the secnumdepth trickery is needed because acronyms are as a
+\end_layout
+
+\begin_layout Plain Layout
+
+%     standard chapter and we are faking '
+\backslash
+listofacronyms'
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{secnumdepth}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{your acronym chapter's file name}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{secnumdepth}{2}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% setup page numbering, page counter, etc.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+startpages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Thesis starts here.
+ Create a new tex file for each chapter and input it
+\end_layout
+
+\begin_layout Plain Layout
+below.
+ You may encounter errors if you use å, ä, ö or <space> characters
+\end_layout
+
+\begin_layout Plain Layout
+in referred names.
+\end_layout
+
+\begin_layout Plain Layout
+Good luck!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "johdanto.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
+filename "toinenluku.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{file_name_of_chapter_x}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{file_name_of_chapter_y}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "Bibliografia"
+options "plain"
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Almost there....
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% make sure pagecount is correct even if references overflow to a new page
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\backslash
+addtocounter{page}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+eofpages
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+appendices
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% create your appendix chapters with command 
+\backslash
+appchapter{some name} instead
+\end_layout
+
+\begin_layout Plain Layout
+
+% of 
+\backslash
+chapter{some name} for the automagic page counting to work
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{file name of appchapter xxx}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{file name of appchapter yyy}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{file name of appchapter zzz}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+input{and so on}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+main document ends here
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eofapppages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
