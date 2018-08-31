@@ -548,7 +548,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+%
 \backslash
 pagebreak
 \backslash
@@ -559,60 +559,7 @@ addtocounter{page}{-1}
 
 
 \backslash
-eofpages
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
 appendices
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% create your appendix chapters with command 
-\backslash
-appchapter{some name} instead
-\end_layout
-
-\begin_layout Plain Layout
-
-% of 
-\backslash
-chapter{some name} for the automagic page counting to work
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-input{file name of appchapter xxx}
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-input{file name of appchapter yyy}
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-input{file name of appchapter zzz}
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-input{and so on}
 \end_layout
 
 \end_inset
@@ -625,7 +572,15 @@ input{and so on}
 status open
 
 \begin_layout Plain Layout
-main document ends here
+create your appendix chapters with command 
+\backslash
+appchapter{some name} instead
+\end_layout
+
+\begin_layout Plain Layout
+of 
+\backslash
+chapter{some name} for the automagic page counting to work
 \end_layout
 
 \end_inset
@@ -633,15 +588,44 @@ main document ends here
 
 \end_layout
 
+\begin_layout Appendix
+Liitedokumentti
+\end_layout
+
 \begin_layout Standard
-\begin_inset ERT
+Tässä esimerkki
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+kaksisivuisesta liitteestä.
+\end_layout
+
+\begin_layout Appendix
+Liitedokumentti 2
+\end_layout
+
+\begin_layout Standard
+Tässä esimerkki
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+toisesta kaksisivuisesta liitteestä.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-eofapppages
+main document ends here
 \end_layout
 
 \end_inset

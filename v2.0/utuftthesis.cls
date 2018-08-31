@@ -120,6 +120,8 @@
 
 %% Modify the \printbibliography command
 \defbibheading{bibliography}{
+%\eofpages
+\label{endofpages}
 \addcontentsline{toc}{chapter}{\refs}
 \chapter*{\refs}}
 
@@ -437,22 +439,6 @@ the Turnitin OriginalityCheck service.}
         \fancyfoot{}
 }       
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% define \eofpages 
-%
-\makeatletter
-\def\eof@pages{%
-        \immediate\write\@auxout{\string
-        \newlabel{endofpages}{{}{\arabic{page}}}}%
-}
-\newcommand{\eofpages}{\eof@pages}
-\makeatother
-
-%
-% 
-%
-%\newcommand{\appname}{foo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -484,6 +470,7 @@ the Turnitin OriginalityCheck service.}
         \chapter{#1}
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % define \eofapppages
@@ -499,3 +486,6 @@ the Turnitin OriginalityCheck service.}
         \eof@apppages
 }
 \makeatother
+
+%% automatically handle the appendix magic
+\AtEndDocument{\eofapppages}

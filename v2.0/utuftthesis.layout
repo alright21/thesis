@@ -1,28 +1,27 @@
 #% Do not delete the line below; configure depends on this
 #  \DeclareLaTeXClass{UTU FT Thesis}
 #  \DeclareCategory{Articles}
-# Article textclass definition file. Taken from initial LyX source code
-# Author : Matthias Ettrich <ettrich@informatik.uni-tuebingen.de>
-# Transposed by Pascal André <andre@via.ecp.fr>
-# Heavily modifed and enhanced by serveral developers.
+# UTU FT thesis document class, based on report
+# Author : Jari-Matti Mäkelä <jmjm@iki.fi>
 
 Format 60
 Input stdclass.inc
 
-SecNumDepth             3
-TocDepth                3
+SecNumDepth            3
+TocDepth               3
 
-Provides fontenc            1
-Provides url            1
-Provides geometry       1
-Provides babel       1
+Provides fontenc       1
+Provides url           1
+Provides geometry      1
+Provides babel         1
 Provides amsmath       1
 Provides amssymb       1
 
-NoStyle Chapter
-NoCounter chapter
-NoStyle Chapter*
-
+Style Appendix
+    CopyStyle     Chapter
+    LatexName     appchapter
+    LabelString   "Appendix" # For the menu?
+End
 
 Style Part
     Align                 Left
@@ -33,7 +32,6 @@ Style Part
       Size                Larger
     EndFont
 End
-
 
 Style Part*
     Align                 Left
