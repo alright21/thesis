@@ -2,28 +2,30 @@
 
 Viittaaminen lukuun \ref{Johdanto}, toiseen lukuun \ref{Toinen luku},
 alilukuun \ref{Alaotsikko}, tätä alempaan lukuun \ref{Alempiotsikko},
-alimpaan lukuun \ref{Alinotsikko}, kuvaan \ref{Kuva esimerkki} ja
-tauluun \ref{Taulu esimerkki}.
+alimpaan lukuun \ref{Alinotsikko}, kuvaan \ref{Kuvaesimerkki} ja
+tauluun \ref{Tauluesimerkki}.
 
 Kuva liitetään seuraavasti. ShareLaTeXin autocomplete rakentaa koko
 begin-end blockin yleensä puolestasi.
 
 \begin{figure}
-\centering \includegraphics[width=0.5\textwidth]{kuvat/turun_yliopisto_logo_rgb}
+\centering \includegraphics[width=0.5\textwidth]{kuvat/turun-yliopisto-logo-rgb}
 \caption{Kuvan otsikko}
-\label{Kuva esimerkki} 
+\label{Kuvaesimerkki} 
 \end{figure}
 
 Taulukkoja tehdään seuraavasti.
 
 \begin{table}
 \centering \caption{Taulukon otsikko tulee taulun yläpuolelle}
+\begin{centering}
 \begin{tabular}{l|c|r|}
 Taulun  & elementit  & erotetaan \tabularnewline
 \hline 
 toisistaan  & et-merkillä  & \tabularnewline
 soluja voi myös  &  & jättää tyhjäksi \tabularnewline
-\end{tabular}\label{Taulu esimerkki} 
+\end{tabular}\label{Tauluesimerkki} 
+\end{centering}
 \end{table}
 
 Kirjallisuusviitteet lisätään bib-muodossa bibliografia tiedostoon

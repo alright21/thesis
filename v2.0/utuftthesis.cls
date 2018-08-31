@@ -122,8 +122,8 @@
 \defbibheading{bibliography}{
 %\eofpages
 \label{endofpages}
-\addcontentsline{toc}{chapter}{\refs}
-\chapter*{\refs}}
+\chapter*{\refs}
+\addcontentsline{toc}{chapter}{\refs}}
 
 %% load sverb package
 %   - enhanced handling of verbatim stuff; listing environment
@@ -166,15 +166,13 @@
 }{}
 
 %% magic thesis types. more can be added
-\newcommand*{\thesistype}[1]{%
-  \begin{switch}{\p@btype}
+\newcommand*{\thesistype}[1]{ \begin{switch}{\p@btype}
       \case{tkk}{\langchoose{#1}{TkK -tutkielma}{Bachelor's Thesis}}%
       \case{luk}{\langchoose{#1}{LuK -tutkielma}{Bachelor's Thesis}}%
       \case{gradu}{\langchoose{#1}{Pro gradu -tutkielma}{Master of Science Thesis}}%
       \case{di}{\langchoose{#1}{Diplomityö}{Master of Science Thesis}}%
     \default{\p@btype}%
-    \end{switch}
-}
+    \end{switch}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -345,6 +343,20 @@ the Turnitin OriginalityCheck service.}
 \clearpage
 }
 
+%% used to detect the number of pages
+\RequirePackage[page]{totalcount}
+
+%% used to detect the empty \totalpages on the first latex run
+\newcommand*{\IsInteger}[3]{%
+    \IfStrEq{#1}{ }{%
+        %#3% is a blank string
+    }{%
+        \IfInteger{#1}{#2}{#3}%
+    }%
+}%
+
+\RequirePackage{xstring}
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % define itabstract environment for abstract page
@@ -354,14 +366,14 @@ the Turnitin OriginalityCheck service.}
   \langchoose{#1}{
     \newcommand{\uni}{\yliopisto}
     \newcommand{\dep}{\laitos}
-    \newcommand{\pp}{s.}
-    \newcommand{\app}{liites.}
+    \newcommand{\@pp}{s.}
+    \newcommand{\@app}{liites.}
   }
   {
     \newcommand{\uni}{\university}
     \newcommand{\dep}{\department}
-    \newcommand{\pp}{p.}
-    \newcommand{\app}{app. p.}
+    \newcommand{\@pp}{p.}
+    \newcommand{\@app}{app. p.}
   }
   
   \setlength{\headheight}{0 pt}
@@ -377,8 +389,15 @@ the Turnitin OriginalityCheck service.}
   \begin{entry}{}
   \item[\textsc{\@author}] \@title
   \end{entry}
-
-  \thesistype{#1}, \pageref{endofpages} \pp, \pageref{endofappendices} \app \\
+\IsInteger{\totalpages}{
+\ifnum \totalpages > 0
+  \thesistype{#1}, \pageref{endofpages} \@pp, \totalpages\ \@app \\
+\else
+  \thesistype{#1}, \pageref{endofpages} \@pp \\
+\fi
+}
+{\thesistype{#1}, \langfin{aja LaTeX uudestaan}{please rerun LaTeX} \\
+}
   \langchoose{#1}{\p@blab}{\p@blaben}\\
   \langchoose{#1}{\KUUKAUSI{\m@nth}}{\MONTH{\m@nth}} \ye@r \\
   \rule{\linewidth}{1 pt}
@@ -437,7 +456,9 @@ the Turnitin OriginalityCheck service.}
         \chead{}
         \rhead{\thepage}
         \fancyfoot{}
+  \setcounter{totalcount@page}{-1000}
 }       
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,47 +466,29 @@ the Turnitin OriginalityCheck service.}
 % define \appendices
 %
 \newcommand{\appendices}{%
-  \addtocontents{toc}{\protect\contentsline{chapter}{\appname}{}\relax}
   \newpage
   \appendix
+  \addtocontents{toc}{\protect\contentsline{chapter}{\appname}{}\relax}
   \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter.\ ##1}}{}}
   \lhead{\leftmark}
   \chead{}
-  \rhead{\thepage}
+  \rhead{\thechapter-\arabic{page}}
   \fancyfoot{}
-  \renewcommand{\thepage}{\thechapter-\arabic{page}}
-  \setcounter{page}{1}
+  \setcounter{page}{0}
+  \renewcommand\thepage{\thechapter-\arabic{page}}
+  \setcounter{totalcount@page}{-1}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % define \appchapter
 %
-\newcounter{apppage}
-\setcounter{apppage}{0}
 \newcommand{\appchapter}[1]{%
-        \addtocounter{apppage}{\value{page}}
+        \addtocounter{totalcount@page}{\value{page}}
         \clearpage
         \setcounter{page}{1}
         \chapter{#1}
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% define \eofapppages
-%
-\makeatletter
-\def\eof@apppages{%
-        \immediate\write\@auxout{\string
-        \newlabel{endofappendices}{{}{\arabic{apppage}}}}%
-}
-\newcommand{\eofapppages}{%
-        \addtocounter{apppage}{\value{page}}
-        \addtocounter{apppage}{-1}
-        \eof@apppages
-}
-\makeatother
-
 %% automatically handle the appendix magic
-\AtEndDocument{\eofapppages}
+%\AtEndDocument{\addtocounter{totalcount@page}{-2}}

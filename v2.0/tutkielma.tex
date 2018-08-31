@@ -22,8 +22,10 @@
 %               beginning of each Chapter
 \documentclass[a4paper,12pt,language=finnish,hidechapters=false]{utuftthesis}
 
-\bibliography{Bibliografia}
+%\usepackage{hyperref}
 
+\bibliography{Bibliografia}
+                 
 \begin{document}
 
 % your name
@@ -123,20 +125,18 @@
 
 % make sure pagecount is correct even if references overflow to a new page
 \pagebreak\addtocounter{page}{-1}
-\appendices
 
+% don't include this if appendices are not present
+%\appendices
 
-\appchapter{Liitedokumentti}
+%\appchapter{Liitedokumentti}
+%Tässä esimerkki\newpage kaksisivuisesta liitteestä.
 
-Tässä esimerkki\pagebreak{}
+%\appchapter{Liitedokumentti 2}
+%Tässä esimerkki\newpage toisesta kaksisivuisesta liitteestä.
 
-kaksisivuisesta liitteestä.
-
-\appchapter{Liitedokumentti 2}
-
-Tässä esimerkki\pagebreak{}
-
-toisesta kaksisivuisesta liitteestä.
+%\appchapter{Liitedokumentti 3}
+%Tässä esimerkki yksisivuisesta liitteestä.
 
 % create your appendix chapters with command \appchapter{some name} instead
 % of \chapter{some name} for the automagic page counting to work
@@ -150,4 +150,5 @@ toisesta kaksisivuisesta liitteestä.
 % main document ends here
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{document}

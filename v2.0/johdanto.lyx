@@ -164,7 +164,7 @@ noprefix "false"
  ja tauluun 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "Taulu esimerkki"
+reference "Tauluesimerkki"
 plural "false"
 caps "false"
 noprefix "false"
@@ -200,7 +200,7 @@ centering
 
  
 \begin_inset Graphics
-	filename kuvat/turun_yliopisto_logo_rgb.png
+	filename kuvat/turun-yliopisto-logo-rgb.png
 	width 50text%
 
 \end_inset
@@ -240,19 +240,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
- 
+\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -360,13 +348,17 @@ jättää tyhjäksi
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset CommandInset label
 LatexCommand label
-name "Taulu esimerkki"
+name "Tauluesimerkki"
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_inset

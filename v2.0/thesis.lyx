@@ -32,7 +32,7 @@
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\pdf_bookmarks true
+\pdf_bookmarks false
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
 \pdf_bookmarksopenlevel 1
@@ -40,8 +40,7 @@
 \pdf_pdfborder false
 \pdf_colorlinks false
 \pdf_backref false
-\pdf_pdfusetitle true
-\pdf_pagemode FullScreen
+\pdf_pdfusetitle false
 \papersize default
 \use_geometry true
 \use_package amsmath 2
@@ -479,6 +478,10 @@ Good luck!
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand input
 filename "johdanto.lyx"
@@ -489,6 +492,11 @@ filename "johdanto.lyx"
 \begin_inset CommandInset include
 LatexCommand input
 filename "toinenluku.lyx"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -557,9 +565,18 @@ addtocounter{page}{-1}
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+% don't include this if appendices are not present
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
-appendices
+appendices 
 \end_layout
 
 \end_inset
