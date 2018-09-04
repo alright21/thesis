@@ -14,6 +14,8 @@
 
 \makeatother
 
+\usepackage[style=ieee]{biblatex}
+\addbibresource{Bibliografia.bib}
 \begin{document}
 % publication year
 \pubyear{2018}
@@ -84,18 +86,25 @@
 %\input{file_name_of_chapter_x}
 %\input{file_name_of_chapter_y}
 
-% insert references
-\bibliography{Bibliografia}% make sure pagecount is correct even if references overflow to a new page
-\pagebreak\addtocounter{page}{-1}
-\eofpages
-\appendices
+\printbibliography
+% make sure pagecount is correct even if references overflow to a new page
+%\pagebreak\addtocounter{page}{-1}
 
-% create your appendix chapters with command \appchapter{some name} instead
-% of \chapter{some name} for the automagic page counting to work
-%\input{file name of appchapter xxx}
-%\input{file name of appchapter yyy}
-%\input{file name of appchapter zzz}
-%\input{and so on}
+% don't include this if appendices are not present
+\appendices 
 
-\eofapppages
+
+\appchapter{Liitedokumentti}
+
+Tässä esimerkki\pagebreak{}
+
+kaksisivuisesta liitteestä.
+
+\appchapter{Liitedokumentti 2}
+
+Tässä esimerkki\pagebreak{}
+
+toisesta kaksisivuisesta liitteestä.
+
+
 \end{document}

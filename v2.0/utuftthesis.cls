@@ -20,21 +20,23 @@
 \newcommand{\n@tivelang}{finnish}
 
 %% Custom package options
-\DeclareStringOption[00]{year}
-\DeclareStringOption[initial]{version}
+%\DeclareStringOption[00]{year}
+\DeclareStringOption[draft]{version}
+\DeclareStringOption[a4paper]{paper}
 \DeclareStringOption[finnish]{language}
 \DeclareStringOption[false]{hidechapters}
+\DeclareStringOption[false]{includereferences}
+
+%% Process given options
+\ProcessKeyvalOptions*
 
 %% Fallback
 %\DeclareOption*{}
 %  \ClassWarning{myclass}{Unknown option '\CurrentOption'}
-
-%% Process given options
-\ProcessKeyvalOptions*
-\ProcessOptions\relax
+%\ProcessOptions\relax
 
 %% Load base
-\LoadClass[a4paper,12pt]{report}
+\LoadClass[\utuftthesis@paper,12pt]{report}
 
 \RequirePackage{ifthen}
 
@@ -63,6 +65,8 @@
   \fi
   \RequirePackage{lmodern}
 \fi
+
+\RequirePackage{csquotes}
 
 %% Macro for hiding the chapter texts
 \ifthenelse{\equal{\utuftthesis@hidechapters}{true}}{
@@ -121,9 +125,17 @@
 %% Modify the \printbibliography command
 \defbibheading{bibliography}{
 %\eofpages
-\label{endofpages}
+% label here if we don't include references
+\ifthenelse{\equal{\utuftthesis@includereferences}{true}}{}{\label{endofpages}}
 \chapter*{\refs}
 \addcontentsline{toc}{chapter}{\refs}}
+
+\let\oldprintbibliography\printbibliography
+\renewcommand{\printbibliography}{
+\oldprintbibliography
+% label here if we also include references
+\ifthenelse{\equal{\utuftthesis@includereferences}{true}}{\label{endofpages}}{}
+}
 
 %% load sverb package
 %   - enhanced handling of verbatim stuff; listing environment
@@ -142,6 +154,7 @@
 \newcommand{\ye@r}{\the\year}
 \newcommand{\m@nth}{\the\month}
 \newcommand{\s@pervisors}{}
+\newcommand{\version}{\utuftthesis@version}
 \newcommand\keywords[1]{\def\k@ywords{#1}}
 \newcommand\keywordstwo[1]{\def\k@ywordstwo{#1}}
 \newcommand\pubyear[1]{\renewcommand\ye@r{#1}}
@@ -221,7 +234,7 @@
 %
 \setlength{\voffset}{0 mm}
 \setlength{\topmargin}{0 mm}
-\setlength{\headheight}{12 pt}
+\setlength{\headheight}{14.5 pt}
 \setlength{\headsep}{24 pt}
 \setlength{\textheight}{230mm}
 \setlength{\footnotesep}{12 pt}
@@ -453,7 +466,8 @@ the Turnitin OriginalityCheck service.}
           {}
         }
         \lhead{\leftmark}
-        \chead{}
+
+\chead{\ifthenelse{\equal{draft}{\version}}{[draft]}{}}
         \rhead{\thepage}
         \fancyfoot{}
   \setcounter{totalcount@page}{-1000}

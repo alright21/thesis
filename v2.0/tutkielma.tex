@@ -1,7 +1,24 @@
-%
 % Document template suitable for use as a latex master-file for masters
 % thesis in University of Turku Department of Future Technologies. 
-% Relies on thesis.cls for the document class definitions.
+
+% This template is synced with the gitlab template.
+% Works with sharelatex / pdflatex / xelatex
+
+% --
+
+% HOW TO USE?
+%
+% Want to write a thesis? Clone this template
+% Kirjoitatko tutkielmaa? Kloonaa tämä pohja
+
+% Want to fix something in the template? Send a
+% merge request @ https://gitlab.utu.fi/jmjmak/thesis
+% Haluatko korjata jotain alkup. pohjassa? Lähetä
+% korjauspyyntö @ https://gitlab.utu.fi/jmjmak/thesis
+
+% --
+
+% Relies on utuftthesis.cls for the document class definitions.
 
 % Traditionally the best places to learn (La)TeX are probably the manual
 % pages for each package
@@ -16,11 +33,15 @@
 %
 % The utuftthesis.cls defines a new thesis class, which is based on
 % the report class. It supports these new named parameters:
+% paper: a4paper
+% version: draft / final (draft shows [draft] in the header)
 % language: provide a language (finnish,english) as a parameter to
 %          change the general document appearance and hyphenation
 % hidechapters: show (false) or hide (true) the chapter/luku text at the
 %               beginning of each Chapter
-\documentclass[a4paper,12pt,language=finnish,hidechapters=false]{utuftthesis}
+% includereferences: include reference pages when calculating the total
+                     number of pages
+\documentclass[paper=a4paper,version=final,language=finnish,hidechapters=false,includereferences=false]{utuftthesis}
 
 %\usepackage{hyperref}
 
@@ -129,11 +150,11 @@
 % don't include this if appendices are not present
 %\appendices
 
-%\appchapter{Liitedokumentti}
-%Tässä esimerkki\newpage kaksisivuisesta liitteestä.
+\appchapter{Liitedokumentti}
+Tässä esimerkki\newpage kaksisivuisesta liitteestä.
 
-%\appchapter{Liitedokumentti 2}
-%Tässä esimerkki\newpage toisesta kaksisivuisesta liitteestä.
+\appchapter{Liitedokumentti 2}
+Tässä esimerkki\newpage toisesta kaksisivuisesta liitteestä.
 
 %\appchapter{Liitedokumentti 3}
 %Tässä esimerkki yksisivuisesta liitteestä.
