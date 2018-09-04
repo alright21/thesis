@@ -87,50 +87,12 @@
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-% main language keywords
+\begin_layout Keywords
+tähän, lista, avainsanoista
 \end_layout
 
-\begin_layout Plain Layout
-
-
-\backslash
-keywords{tähän, lista, avainsanoista}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% Second set of keywords (english)
-\end_layout
-
-\begin_layout Plain Layout
-
-% (in case the document is written in non-english)
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-keywordstwo{here, a, list, of, keywords}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+\begin_layout KeywordsEnglish
+here, a, list, of, keywords
 \end_layout
 
 \begin_layout Abstract
@@ -159,54 +121,24 @@ ulokset tulosten perusteella tehdyt päätelmät ja toimenpidesuositukset asiasa
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-
+Second abstract in english(in case the document is written in non-english)
 \end_layout
 
 \begin_layout Plain Layout
-
-% Second abstract in english
-\end_layout
-
-\begin_layout Plain Layout
-
-% (in case the document is written in non-english)
-\end_layout
-
-\begin_layout Plain Layout
-
-% comment if not needed
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{abstracten}
-\end_layout
-
-\begin_layout Plain Layout
-
-If your thesis is in english this might also be required???
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{abstracten}
+comment if not needed
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout AbstractEnglish
+If your thesis is in english this might also be required???
 \end_layout
 
 \end_body

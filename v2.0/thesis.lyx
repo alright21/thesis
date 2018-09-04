@@ -89,73 +89,31 @@
 
 \begin_body
 
-\begin_layout Standard
+\begin_layout PubYear
+2018
+\end_layout
+
+\begin_layout PubMonth
+6
+\end_layout
+
+\begin_layout PubLab
+Labran nimi
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-% publication year
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-pubyear{2018}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% publication month 1-12
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-pubmonth{6}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% laboratory name
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-publab{Labran Nimi}{Laboratory Name}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% supports magic values: tkk, luk, gradu & di
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-pubtype{tkk}
+}{Laboratory Name
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout PubType
+tkk
 \end_layout
 
 \begin_layout Title
