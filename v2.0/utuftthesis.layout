@@ -16,6 +16,9 @@ Provides geometry      1
 Provides babel         1
 Provides amsmath       1
 Provides amssymb       1
+Provides fontspec      1
+Provides graphicx      1
+Provides biblatex      1
 
 Style Appendix
     CopyStyle     Chapter

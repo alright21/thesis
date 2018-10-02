@@ -1,3 +1,4 @@
+% version 2.1 2018/10/02 Bugfixes: removed redundant tutkielma.tex, fixed issues with appendices, small caps, added an option to enable the truetype times new roman font
 % version 2.0 2018/08/29 new version using document classes, xelatex, biblatex, and some additional TeX scripting by Jari-Matti Mäkelä (jmjm@iki.fi), based on v1.3 by Sami Nuuttila (samnuutt@utu.fi), Johannes Holvitie (jjholv@utu.fi) et al.
 % version 1.3+ 1.10.2017//10/1 - 2016/9/22 additions marked "JH:", modified for use in tex.soft.utu.fi, Johannes Holvitie (jjholv@utu.fi)
 % version 1.3 2015/9/5 Sami Nuuttila (samnuutt@utu.fi)
@@ -13,7 +14,7 @@
 % ------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[2007/01/01]
-\ProvidesClass{utuftthesis}[2018/08/29 UTU FT dept BSc/MSc thesis]
+\ProvidesClass{utuftthesis}[2018/10/02 UTU FT dept BSc/MSc thesis]
 
 \RequirePackage{kvoptions}
 
@@ -24,8 +25,9 @@
 \DeclareStringOption[draft]{version}
 \DeclareStringOption[a4paper]{paper}
 \DeclareStringOption[finnish]{language}
-\DeclareStringOption[false]{hidechapters}
+\DeclareStringOption[true]{hidechapters}
 \DeclareStringOption[false]{includereferences}
+\DeclareStringOption[false]{realtimesnewroman}
 
 %% Process given options
 \ProcessKeyvalOptions*
@@ -53,6 +55,11 @@
   \RequirePackage{fontspec}
   \RequirePackage{polyglossia}
   \setmainlanguage{\utuftthesis@language}
+  \iffin
+  \setotherlanguage{english}
+  \else
+  \fi
+  \ifthenelse{\equal{\utuftthesis@realtimesnewroman}{true}}{\setmainfont{Times New Roman}}{}
 \else
 % JH: modified latin to UTF-8 encoding cues to make Scandinavian characters works
   \RequirePackage[T1]{fontenc}
@@ -64,6 +71,10 @@
   \RequirePackage[\utuftthesis@language]{babel}
   \fi
   \RequirePackage{lmodern}
+  % change default font to times-roman
+  \renewcommand{\sfdefault}{phv}
+  \renewcommand{\rmdefault}{ptm}
+  \renewcommand{\ttdefault}{pcr}
 \fi
 
 \RequirePackage{csquotes}
@@ -115,7 +126,7 @@
 %%   \RequirePackage[dvips]{graphicx}
 %% \fi
 
-\RequirePackage[style=ieee]{biblatex}
+\RequirePackage[style=ieee,backend=biber]{biblatex}
 
 %% Define new title texts for the bibliography
 \langfin
@@ -191,11 +202,6 @@
 %
 % setup document appearance
 %
-
-% change default font to times-roman
-\renewcommand{\sfdefault}{phv}
-\renewcommand{\rmdefault}{ptm}
-\renewcommand{\ttdefault}{pcr}
 
 % fix page size
 %

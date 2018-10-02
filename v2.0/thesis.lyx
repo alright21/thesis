@@ -5,19 +5,19 @@
 \save_transient_properties true
 \origin unavailable
 \textclass utuftthesis
-\options a4paper,12pt,language=finnish,hidechapters=false
+\options a4paper,12pt,language=finnish,hidechapters=true,realtimesnewroman=false
 \use_default_options false
 \maintain_unincluded_children false
 \language finnish
-\language_package auto
-\inputencoding utf8
+\language_package default
+\inputencoding auto
 \fontencoding default
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -89,6 +89,150 @@
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Document template suitable for use as a LaTeX master-file for master's thesis
+ in University of Turku Department of Future Technologies.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Compatible with: ShareLaTeX / PDFLaTeX / XeLaTeX.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+** HOW TO USE? **
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Want to write a thesis? Clone this template in ShareLaTeX or fork the department
+'s thesis git project.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The utuftthesis.cls defines a new thesis class, which is based on the report
+ class.
+ It supports these new named parameters:
+\end_layout
+
+\begin_layout Plain Layout
+- paper: a4paper
+\end_layout
+
+\begin_layout Plain Layout
+- version: draft / final (default: draft) shows/hides [draft] in the header
+\end_layout
+
+\begin_layout Plain Layout
+- language: finnish / english (default:finnish) affects the general document
+ appearance and hyphenation
+\end_layout
+
+\begin_layout Plain Layout
+- hidechapters: true / false (default:true) hides/shows the chapter/luku
+ text at the beginning of each Chapter
+\end_layout
+
+\begin_layout Plain Layout
+- includereferences: true / false (default:false) include reference pages
+ when calculating the total number of pages
+\begin_inset Newline newline
+\end_inset
+
+- realtimesnewroman: true / false (default:false) use Times New Roman instead
+ of LaTeX fonts with XeLaTeX.
+ Requires the font to be installed on the system / provided in the document
+ directory.
+ Other fonts can be defined with 
+\backslash
+setmainfont.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Traditionally the best places to learn (La)TeX are probably the manual pages
+ for each package http://www.ctan.org/ and http://www.ctan.org/tex-archive/info/lsho
+rt/english/lshort.pdf.
+ This new version (2.0) should be compatible with xelatex and biblatex which
+ means that all source files can freely use normal UTF-8 text without resorting
+ to ""legacy hacks".
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note that PDF/A requirements don't allow PDF links, but if you want to provide
+ a user friendly version of the thesis with links, use 
+\backslash
+hyperref
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+** Maintenance **
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Workflow: https://gitlab.utu.fi/ttweb/thesis -> master .lyx document exported
+ as .tex documents -> repository content dumped to the sharelatex project
+ template
+\end_layout
+
+\begin_layout Plain Layout
+Want to fix something in the template? Send a merge.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Relies on utuftthesis.cls for the document class definitions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout PubYear
 2018
 \end_layout
@@ -105,6 +249,17 @@ status open
 \begin_layout Plain Layout
 
 }{Laboratory Name
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+looks a bit funny in LyX.
+ Gotta learn how to fix this..
 \end_layout
 
 \end_inset
@@ -135,6 +290,16 @@ filename "abstract.lyx"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -146,33 +311,26 @@ status open
 
 \begin_layout Plain Layout
 
-%
-\end_layout
-
-\begin_layout Plain Layout
-
 % the redefinition of plain style works also for 1st pages of chapters,
 \end_layout
 
 \begin_layout Plain Layout
 
 % which is the default in report class.
- Just state 
-\backslash
-thispagestyle{empty}
 \end_layout
 
 \begin_layout Plain Layout
 
-% after 
+% Just state 
 \backslash
-chapter{something} if you want empty style for the 1st pages.
- 
+thispagestyle{empty} after 
+\backslash
+chapter{something} if you want
 \end_layout
 
 \begin_layout Plain Layout
 
-%
+% empty style for the 1st pages.
 \end_layout
 
 \begin_layout Plain Layout
@@ -210,9 +368,11 @@ headrulewidth}{0 pt}
 }
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-\end_layout
+
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
@@ -284,6 +444,10 @@ clearpage
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 %
 \backslash
 setcounter{page}{0}
@@ -317,9 +481,11 @@ setcounter{page}{0}
 listoftables
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-\end_layout
+
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
@@ -387,9 +553,11 @@ input{your acronym chapter's file name}
 setcounter{secnumdepth}{2}
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-\end_layout
+
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
@@ -406,24 +574,21 @@ startpages
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Comment
 status open
 
 \begin_layout Plain Layout
-Thesis starts here.
- Create a new tex file for each chapter and input it
+The thesis starts here.
 \end_layout
 
 \begin_layout Plain Layout
-below.
- You may encounter errors if you use å, ä, ö or <space> characters
+To better organize things, create a new tex file for each chapter and input
+ it below.
 \end_layout
 
 \begin_layout Plain Layout
-in referred names.
+Avoid using the å, ä, ö or <space> characters in referred names and underscores
+ _ in file names (may break hyperref).
 \end_layout
 
 \begin_layout Plain Layout
@@ -476,6 +641,16 @@ input{file_name_of_chapter_y}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+The thesis main content ends here.
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
@@ -485,41 +660,22 @@ options "plain"
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Comment
 status open
 
 \begin_layout Plain Layout
-Almost there....
+Don't include this if appendices are not present.
+ On the other hand, without this call, the appendices don't look right.
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
-
-\begin_layout Plain Layout
-
-% make sure pagecount is correct even if references overflow to a new page
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-pagebreak
-\backslash
-addtocounter{page}{-1}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% don't include this if appendices are not present
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -534,19 +690,15 @@ appendices
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Comment
 status open
 
 \begin_layout Plain Layout
-create your appendix chapters with command 
+Create your appendix chapters with command 
 \backslash
-appchapter{some name} instead
-\end_layout
-
-\begin_layout Plain Layout
-of 
+appchapter{some name} instead of 
 \backslash
-chapter{some name} for the automagic page counting to work
+chapter{some name} for the automagic page counting to work!
 \end_layout
 
 \end_inset
@@ -587,7 +739,7 @@ toisesta kaksisivuisesta liitteestä.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Comment
 status open
 
 \begin_layout Plain Layout
