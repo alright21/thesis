@@ -158,9 +158,9 @@ The utuftthesis.cls defines a new thesis class, which is based on the report
 \begin_layout Plain Layout
 - includereferences: true / false (default:false) include reference pages
  when calculating the total number of pages
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 - realtimesnewroman: true / false (default:false) use Times New Roman instead
  of LaTeX fonts with XeLaTeX.
  Requires the font to be installed on the system / provided in the document
@@ -168,6 +168,11 @@ The utuftthesis.cls defines a new thesis class, which is based on the report
  Other fonts can be defined with 
 \backslash
 setmainfont.
+\end_layout
+
+\begin_layout Plain Layout
+- sharelatex: true / false (default: false) don't attempt to use (c) system
+ fonts, instead read them from the project repository
 \begin_inset Newline newline
 \end_inset
 

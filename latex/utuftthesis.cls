@@ -28,6 +28,7 @@
 \DeclareStringOption[true]{hidechapters}
 \DeclareStringOption[false]{includereferences}
 \DeclareStringOption[false]{realtimesnewroman}
+\DeclareStringOption[false]{sharelatex}
 
 %% Process given options
 \ProcessKeyvalOptions*
@@ -59,7 +60,17 @@
   \setotherlanguage{english}
   \else
   \fi
-  \ifthenelse{\equal{\utuftthesis@realtimesnewroman}{true}}{\setmainfont{Times New Roman}}{}
+  \ifthenelse{\equal{\utuftthesis@realtimesnewroman}{true}}{
+    \ifthenelse{\equal{\utuftthesis@sharelatex}{true}}{
+      \setmainfont[
+      BoldFont=timesbd.ttf,
+      ItalicFont=timesi.ttf,
+      BoldItalicFont=timesbi.ttf
+      ]{times.ttf}
+    }{
+    \setmainfont{Times New Roman}
+    }
+  }{}
 \else
 % JH: modified latin to UTF-8 encoding cues to make Scandinavian characters works
   \RequirePackage[T1]{fontenc}
