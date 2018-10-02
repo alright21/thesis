@@ -4,12 +4,36 @@
 # possible alternative: https://github.com/natlownes/docker-latex
 image: listx/texlive:2017
 
-graduator:
-    
-  before_script:
+stages:
+ - build
+ - test
+
+pdflatex_builder:
+  stage: build
+  before_script
     - cd latex
   script:
-    - "latexmk -xelatex Tutkielma.tex"
+    - "latexmk -pdf -output-directory=pdflatex/ thesis.tex"
   artifacts:
     paths:
-      - "latex/*.pdf"
+      - "latex/pdflatex/thesis.pdf"
+
+xelatex_builder:
+  stage: build
+  before_script
+    - cd latex
+  script:
+    - "latexmk -xelatex -output-directory=xelatex/ thesis.tex"
+  artifacts:
+    paths:
+      - "latex/xelatex/thesis.pdf"
+
+pdflatex_content_validator:
+  stage: test
+  script:
+    - "pdfinfo latex/pdflatex/thesis.pdf |grep '^Pages: *13$'"
+
+xelatex_content_validator:
+  stage: test
+  script:
+    - "pdfinfo latex/xelatex/thesis.pdf |grep '^Pages: *13$'"
