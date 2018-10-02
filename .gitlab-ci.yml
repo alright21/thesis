@@ -10,7 +10,7 @@ stages:
 
 pdflatex_builder:
   stage: build
-  before_script
+  before_script:
     - cd latex
   script:
     - "latexmk -pdf -output-directory=pdflatex/ thesis.tex"
@@ -20,7 +20,7 @@ pdflatex_builder:
 
 xelatex_builder:
   stage: build
-  before_script
+  before_script:
     - cd latex
   script:
     - "latexmk -xelatex -output-directory=xelatex/ thesis.tex"
