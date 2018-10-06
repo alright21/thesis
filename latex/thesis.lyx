@@ -5,7 +5,7 @@
 \save_transient_properties true
 \origin unavailable
 \textclass utuftthesis
-\options a4paper,12pt,language=finnish,hidechapters=true,realtimesnewroman=false
+\options a4paper,12pt,language=finnish,version=draft,hidechapters=true,includereferences=false,realtimesnewroman=false,sharelatex=false,emptyfirstpages=true
 \use_default_options false
 \maintain_unincluded_children false
 \language finnish
@@ -146,22 +146,22 @@ The utuftthesis.cls defines a new thesis class, which is based on the report
 \end_layout
 
 \begin_layout Plain Layout
-- language: finnish / english (default:finnish) affects the general document
+- language: finnish / english (default: finnish) affects the general document
  appearance and hyphenation
 \end_layout
 
 \begin_layout Plain Layout
-- hidechapters: true / false (default:true) hides/shows the chapter/luku
+- hidechapters: true / false (default: true) hides/shows the chapter/luku
  text at the beginning of each Chapter
 \end_layout
 
 \begin_layout Plain Layout
-- includereferences: true / false (default:false) include reference pages
+- includereferences: true / false (default: false) include reference pages
  when calculating the total number of pages
 \end_layout
 
 \begin_layout Plain Layout
-- realtimesnewroman: true / false (default:false) use Times New Roman instead
+- realtimesnewroman: true / false (default: false) use Times New Roman instead
  of LaTeX fonts with XeLaTeX.
  Requires the font to be installed on the system / provided in the document
  directory.
@@ -173,13 +173,18 @@ setmainfont.
 \begin_layout Plain Layout
 - sharelatex: true / false (default: false) don't attempt to use (c) system
  fonts, instead read them from the project repository
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
+- emptyfirstpages: true / false (default: true) clear the headers/footers
+ for the 1st pages of text chapters
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
+\begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
 Traditionally the best places to learn (La)TeX are probably the manual pages
  for each package http://www.ctan.org/ and http://www.ctan.org/tex-archive/info/lsho
 rt/english/lshort.pdf.
@@ -248,28 +253,10 @@ Relies on utuftthesis.cls for the document class definitions.
 
 \begin_layout PubLab
 Labran nimi
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}{Laboratory Name
 \end_layout
 
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-looks a bit funny in LyX.
- Gotta learn how to fix this..
-\end_layout
-
-\end_inset
-
-
+\begin_layout PubLabEN
+Laboratory Name
 \end_layout
 
 \begin_layout PubType
@@ -295,47 +282,17 @@ filename "abstract.lyx"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
 % empty pagestyle for table of contents etc.
- 
 \end_layout
 
 \begin_layout Plain Layout
 
-% the redefinition of plain style works also for 1st pages of chapters,
-\end_layout
-
-\begin_layout Plain Layout
-
-% which is the default in report class.
-\end_layout
-
-\begin_layout Plain Layout
-
-% Just state 
-\backslash
-thispagestyle{empty} after 
-\backslash
-chapter{something} if you want
-\end_layout
-
-\begin_layout Plain Layout
-
-% empty style for the 1st pages.
+% otherwise you'll get simple page style with roman page numbers
 \end_layout
 
 \begin_layout Plain Layout
@@ -347,90 +304,11 @@ pagestyle{empty}
 
 \begin_layout Plain Layout
 
-
-\backslash
-fancypagestyle{plain}{
 \end_layout
 
 \begin_layout Plain Layout
 
-  
-\backslash
-fancyhf{}
-\end_layout
-
-\begin_layout Plain Layout
-
-  
-\backslash
-renewcommand{
-\backslash
-headrulewidth}{0 pt}
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-% roman numbering for table of contents etc.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-pagenumbering{roman}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-% insert table of contents, list of figures, list of tables
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-% setting the counter to zero effectively removes the page number from
-\end_layout
-
-\begin_layout Plain Layout
-
-% the toc, lof etc.
- entries in the toc since there is no roman numeral
-\end_layout
-
-\begin_layout Plain Layout
-
-% for zero ;-) (if you want them without numbering)
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-setcounter{page}{0}
+% mandatory
 \end_layout
 
 \begin_layout Plain Layout
@@ -442,41 +320,27 @@ tableofcontents
 
 \begin_layout Plain Layout
 
-
-\backslash
-clearpage
 \end_layout
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-setcounter{page}{0}
+% if you want a list of figures
 \end_layout
 
 \begin_layout Plain Layout
 
 %
 \backslash
-listoffigures 
+listoffigures
 \end_layout
 
 \begin_layout Plain Layout
 
-%
-\backslash
-clearpage
 \end_layout
 
 \begin_layout Plain Layout
 
-%
-\backslash
-setcounter{page}{0}
+% if you want a list of tables
 \end_layout
 
 \begin_layout Plain Layout
@@ -486,20 +350,18 @@ setcounter{page}{0}
 listoftables
 \end_layout
 
-\end_inset
-
-
-\begin_inset ERT
-status open
-
 \begin_layout Plain Layout
 
-% possibly insert 'list of acronyms'
 \end_layout
 
 \begin_layout Plain Layout
 
-%
+% 'list of acronyms'
+\end_layout
+
+\begin_layout Plain Layout
+
+%   - you may not need this at all
 \end_layout
 
 \begin_layout Plain Layout
@@ -555,25 +417,7 @@ input{your acronym chapter's file name}
 
 %
 \backslash
-setcounter{secnumdepth}{2}
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-% setup page numbering, page counter, etc.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-startpages
+setcounter{secnumdepth}{2}% setup page numbering, page counter, etc.
 \end_layout
 
 \end_inset
@@ -661,33 +505,6 @@ LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "Bibliografia"
 options "plain"
-
-\end_inset
-
-
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-Don't include this if appendices are not present.
- On the other hand, without this call, the appendices don't look right.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-appendices 
-\end_layout
 
 \end_inset
 
