@@ -62,6 +62,18 @@ Style PubLab
     EndFont
 End
 
+Style PubLabEN
+    Margin                Dynamic
+    LatexType             Command
+    LatexName             publaben
+    LabelType   Static
+    LabelString           "Laboratory name (for 2nd abstract): "
+    Align                 Center
+    Font
+      Size                Large
+    EndFont
+End
+
 Style PubType
     Margin                Dynamic
     LatexType             Command
