@@ -38,6 +38,7 @@ xelatex_builder:
       - tests/xelatex/test-app2.pdf
       - tests/xelatex/test-app3.pdf
       - tests/xelatex/test-app4.pdf
+      - tests/xelatex/test-app5.pdf
       - tests/xelatex/test-bilingual.pdf
       - tests/xelatex/test-english.pdf
       - tests/xelatex/test-finnish.pdf
@@ -55,6 +56,7 @@ pdflatex_builder:
       - tests/pdflatex/test-app2.pdf
       - tests/pdflatex/test-app3.pdf
       - tests/pdflatex/test-app4.pdf
+      - tests/pdflatex/test-app5.pdf
       - tests/pdflatex/test-bilingual.pdf
       - tests/pdflatex/test-english.pdf
       - tests/pdflatex/test-finnish.pdf
@@ -70,6 +72,7 @@ xelatex_content_validator:
     - "grep '2 s., 3 liites.' test-app2.txt"
     - "grep '2 s., 1 liites.' test-app3.txt"
     - "grep 'TkK -tutkielma, 2 s.$' test-app4.txt"
+    - "grep 'TkK -tutkielma, 3 s.$' test-app5.txt"
     - "grep 'TURUN YLIOPISTO' test-finnish.txt"
     - "grep 'TURUN YLIOPISTO' test-bilingual.txt"
     - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
@@ -87,6 +90,7 @@ pdflatex_content_validator:
     - "grep '2 s., 3 liites.' test-app2.txt"
     - "grep '2 s., 1 liites.' test-app3.txt"
     - "grep 'TkK -tutkielma, 2 s.$' test-app4.txt"
+    - "grep 'TkK -tutkielma, 3 s.$' test-app5.txt"
     - "grep 'TURUN YLIOPISTO' test-finnish.txt"
     - "grep 'TURUN YLIOPISTO' test-bilingual.txt"
     - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
