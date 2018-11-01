@@ -172,8 +172,8 @@
 %% magic thesis types. more can be added
 \newcommand*{\thesistype}[1]{
   \begin{switch}{\p@btype}
-    \case{tkk}{\langchoose{#1}{TkK -tutkielma}{Bachelor's Thesis}}%
-    \case{luk}{\langchoose{#1}{LuK -tutkielma}{Bachelor's Thesis}}%
+    \case{tkk}{\langchoose{#1}{TkK-tutkielma}{Bachelor's Thesis}}%
+    \case{luk}{\langchoose{#1}{LuK-tutkielma}{Bachelor's Thesis}}%
     \case{gradu}{\langchoose{#1}{Pro gradu -tutkielma}{Master of Science Thesis}}%
     \case{di}{\langchoose{#1}{Diplomityö}{Master of Science Thesis}}%
     \default{\p@btype}%
