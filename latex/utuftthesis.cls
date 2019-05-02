@@ -1,3 +1,5 @@
+% version 2.3 2019/05/02 Bugfixes: PDF/A-1b support (via pdfx), moved chead to cfoot,
+%                                  updated UTU logos
 % version 2.2 2018/10/06 Bugfixes: Got rid of startappendices and startpages.
 %                                  various fixes. cleanups
 % version 2.1 2018/10/02 Bugfixes: removed redundant tutkielma.tex, fixed issues with
@@ -139,7 +141,15 @@
 \newcommand{\s@pervisors}{none}
 \newcommand{\k@ywords}{not set}
 \newcommand{\k@ywordstwo}{not set}
-\ifdefstring{\utuftthesis@version}{draft}{\newcommand{\version}{[draft]}}{\newcommand{\version}{}}
+
+\ifdefstring{\utuftthesis@version}{draft}{
+  \newcommand{\version}{[draft]}
+
+}{
+  \newcommand{\version}{}
+  \RequirePackage[a-1b]{pdfx}
+}
+
 \newcommand\keywords[1]{\renewcommand\k@ywords{#1}}
 \newcommand\keywordstwo[1]{\renewcommand\k@ywordstwo{#1}}
 \newcommand\pubyear[1]{\renewcommand\ye@r{#1}}
@@ -463,3 +473,9 @@
   \setcounter{page}{1}
   \chapter{#1}
 }
+
+\ifdefstring{\utuftthesis@version}{draft}{
+}{
+  \hypersetup{hidelinks} % can be customized if you don't want to hide links
+}
+
