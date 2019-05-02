@@ -308,6 +308,10 @@
   \newenvironment{abstracten}{\@bstracth{english}}{\@bstractt{english}{\k@ywordstwo}}
 }{
   \renewenvironment{abstract}{\@bstracth{english}}{\@bstractt{english}{\k@ywords}}
+
+  %% the second abstract environment
+  %% always in english - just an alias for 'abstract'
+  \newenvironment{abstracten}{\@bstracth{english}}{\@bstractt{english}{\k@ywords}}
 }
 
 %% title page, reuses the standard \maketitle
