@@ -418,9 +418,10 @@
   \pagestyle{fancy}
   \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ ##1}}{}}
   \lhead{\leftmark}
-  \chead{\version}
+  \chead{}
   \rhead{\thepage}
   \fancyfoot{}
+  \cfoot{\version}
   % the totalcount counter is only used for appendices, set a bogus value now
   % fails if the document has over 1000 pages
   \setcounter{totalcount@page}{-1000}
