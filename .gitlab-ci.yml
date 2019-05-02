@@ -1,14 +1,14 @@
-# This file is a template, and might need editing before it works on your project.
 # use docker image with latex preinstalled
 # since there is no official latex image, use https://github.com/blang/latex-docker
 # possible alternative: https://github.com/natlownes/docker-latex
-image: listx/texlive:2017
 
 stages:
  - build
  - test
 
+# compiles pdflatex/draft & xelatex/draft versions of thesis.tex
 template_builder:
+  image: listx/texlive:2017
   stage: build
   before_script:
     - cd latex
@@ -21,12 +21,36 @@ template_builder:
       - "latex/xelatex/thesis.pdf"
 
 template_validator:
+  image: listx/texlive:2017
   stage: test
   script:
     - "pdfinfo latex/pdflatex/thesis.pdf |grep '^Pages: *13$'"
     - "pdfinfo latex/xelatex/thesis.pdf |grep '^Pages: *13$'"
 
+# PDF/A build: compiles pdflatex/final version of thesis.tex with pdfx (pdf/a-1b)
+pdfa_builder:
+  image: listx/texlive:2017
+  stage: build
+  before_script:
+    - cd latex
+  script:
+    - "sed 's/version=draft/version=final/g' thesis.tex > thesis2.tex"
+    - "latexmk -pdf -shell-escape -output-directory=pdfa/ thesis2.tex"
+  artifacts:
+    paths:
+      - "latex/pdfa/thesis2.pdf"
+
+# PDF/A validation: uses a custom build of verapdf. The official release won't work with Java > 7 atm. :-/
+pdfa_validator:
+  image: openjdk:11
+  stage: test
+  before_script:
+    - "wget https://gitlab.utu.fi/jmjmak/veraPDF-apps/raw/integration/greenfield-apps-1.13.0-SNAPSHOT.jar?inline=false -O validator.jar"
+  script:
+    - "java -cp validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v latex/pdfa/thesis2.pdf|grep '^PASS'"
+
 xelatex_builder:
+  image: listx/texlive:2017
   stage: build
   before_script:
     - cd tests
@@ -45,6 +69,7 @@ xelatex_builder:
       - tests/xelatex/test-hyperref.pdf
 
 pdflatex_builder:
+  image: listx/texlive:2017
   stage: build
   before_script:
     - cd tests
@@ -63,6 +88,7 @@ pdflatex_builder:
       - tests/pdflatex/test-hyperref.pdf
       
 xelatex_content_validator:
+  image: listx/texlive:2017
   stage: test
   before_script:
     - cd tests/xelatex
@@ -81,6 +107,7 @@ xelatex_content_validator:
 
 
 pdflatex_content_validator:
+  image: listx/texlive:2017
   stage: test
   before_script:
     - cd tests/pdflatex
