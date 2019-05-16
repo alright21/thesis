@@ -107,7 +107,15 @@ encouraged
 - https://ctan.org/pkg/minted (preferred)
 - https://ctan.org/pkg/listingsutf8 (does not support full unicode)
 - https://ctan.org/pkg/sverb (still relevant?)
- 
+
+### PDF/A
+
+- The template automatically enables
+  *PDF/A-1b: PDF/A-1b – Level B (basic) conformance* via pdfx when compiling
+  the `version=final` version. The [gitlab CI script](https://gitlab.utu.fi/ttweb/thesis/blob/master/.gitlab-ci.yml) of this project explains
+  how the resulting PDF can be validated with [VeraPDF](https://verapdf.org/).
+  Unfortunately, the official VeraPDF distribution requires an outdated Java 7,
+  so the script uses a [custom UTU version](https://gitlab.utu.fi/jmjmak/veraPDF-apps) compatible with Java 11 LTS or later.
 
 ## Miscellaneous
 - Report bugs via https://gitlab.utu.fi/ttweb/thesis/issues
