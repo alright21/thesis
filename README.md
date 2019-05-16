@@ -87,6 +87,7 @@ latexmk -pdf -xelatex -shell-escape thesis.tex
 ```
 - The project can also be imported directly (as a .zip) to ShareLaTeX / Overleaf.
   The zip is automatically generated if you click the cloud icon in Gitlab.
+  * ShareLaTeX platform hosted @ UTU: https://tex.soft.utu.fi/
 
 
 ## Extra features
@@ -96,6 +97,7 @@ encouraged
 ### R
 
 - https://www.tidyverse.org/
+- https://ggplot2.tidyverse.org/
 - https://yihui.name/knitr/
 - https://joshldavis.com/2014/04/12/beginners-tutorial-for-knitr/
 - https://gitlab.utu.fi/jmjmak/knitr-examples
