@@ -76,7 +76,7 @@ git clone https://gitlab.utu.fi/ttweb/thesis
 ```
 - The `latex` directory contains the document root
 - `utuftthesis.cls` is always required
-- `*.lyx` and `*.layout` files are only needed if you decide to use LyX
+- `*.lyx` and `*.layout` files are only needed if you decide to use [LyX](https://www.lyx.org/)
 - Tthe project can be compiled with latexmk:
 ```
 latexmk -pdf -shell-escape thesis.tex
@@ -86,7 +86,7 @@ latexmk -pdf -shell-escape thesis.tex
 latexmk -pdf -xelatex -shell-escape thesis.tex
 ```
 - The project can also be imported directly (as a .zip) to ShareLaTeX / Overleaf.
-  The zip is automatically generated if you click the cloud icon in Gitlab.
+  The zip is automatically generated if you [click the cloud icon in Gitlab](https://gitlab.utu.fi/ttweb/thesis/-/archive/master/thesis-master.zip).
   * ShareLaTeX platform hosted @ UTU: https://tex.soft.utu.fi/
 
 
