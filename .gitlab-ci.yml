@@ -45,7 +45,7 @@ pdfa_validator:
   image: openjdk:11
   stage: test
   before_script:
-    - "wget https://gitlab.utu.fi/jmjmak/veraPDF-apps/raw/integration/greenfield-apps-1.13.0-SNAPSHOT.jar?inline=false -O validator.jar"
+    - "wget https://gitlab.utu.fi/jmjmak/veraPDF-apps/raw/integration/greenfield-apps-1.15.0-SNAPSHOT.jar?inline=false -O validator.jar"
   script:
     - "java -cp validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v latex/pdfa/thesis2.pdf|grep '^PASS'"
 
