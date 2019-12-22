@@ -101,18 +101,117 @@ name "Toinen luku"
 \end_layout
 
 \begin_layout Standard
-Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
- Lisää tekstiä.
+Tässä luvussa tarkastellaan kahden kuvan upottamista samaan kelluvaan kuvaympäri
+stöön (Kuva 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Optimointia-kahdella-eri"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement tbh
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename kuvat/nailgun.pdf
+	width 45text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Käynnistysajan optimointi Nailgunilla.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename kuvat/proguard.pdf
+	width 45text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Koon optimointi Proguardilla.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Optimointia kahdella eri tavalla.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Optimointia-kahdella-eri"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

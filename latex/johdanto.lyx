@@ -154,7 +154,7 @@ noprefix "false"
 , kuvaan 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "Kuva esimerkki"
+reference "Kuvaesimerkki"
 plural "false"
 caps "false"
 noprefix "false"
@@ -164,7 +164,7 @@ noprefix "false"
  ja tauluun 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "Tauluesimerkki"
+reference "tab:Taulukon-otsikko-tulee"
 plural "false"
 caps "false"
 noprefix "false"
@@ -200,7 +200,7 @@ centering
 
  
 \begin_inset Graphics
-	filename kuvat/utulogoen.eps
+	filename kuvat/utulogoen.pdf
 	width 50text%
 
 \end_inset
@@ -217,7 +217,7 @@ Kuvan otsikko
 
 \begin_inset CommandInset label
 LatexCommand label
-name "Kuva esimerkki"
+name "Kuvaesimerkki"
 
 \end_inset
 
@@ -245,6 +245,13 @@ status open
 
 \begin_layout Plain Layout
 Taulukon otsikko tulee taulun yläpuolelle
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Taulukon-otsikko-tulee"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -350,17 +357,6 @@ jättää tyhjäksi
 
 \end_layout
 
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset label
-LatexCommand label
-name "Tauluesimerkki"
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -440,8 +436,11 @@ Mutta ei ole ollenkaan väliä, kenen nimissä se on julkaistu, sillä se on
 sta jumalista.
  Agricola suomensi myös osia Mooseksen kirjoista ja profeetoista.
  Hänen nimissään on ilmestynyt suomeksi noin 2/5 Raamatusta.
- Toinen esimerkki viittaamisesta, jossa myös cite komennon tagi löytyy Bibliogra
-fia.bib tiedostosta 
+\end_layout
+
+\begin_layout Standard
+Toinen esimerkki viittaamisesta, jossa myös cite-komennon tagi löytyy tiedostost
+a Bibliografia.bib 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "puasuareanu2009survey"

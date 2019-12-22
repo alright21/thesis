@@ -1,60 +1,74 @@
-# use docker image with latex preinstalled
-# since there is no official latex image, use https://github.com/blang/latex-docker
-# possible alternative: https://github.com/natlownes/docker-latex
+# This CI builder performs various tests to ensure the template works
+# using different configurations.
+#
+# To compile your own thesis, take a look at the
+# .gitlab-ci-simple.yml included in this repository.
+#
+# Unfortunately the project folder will accumulate lots of temporary
+# files. In addition, minted requires some tuning to support different
+# output directories.
+
+image: konttipoju/tinytex:2019-12g
 
 stages:
+ - prepare
  - build
  - test
 
-# compiles pdflatex/draft & xelatex/draft versions of thesis.tex
-template_builder:
-  image: listx/texlive:2017
-  stage: build
-  before_script:
-    - cd latex
+prepare_tests:
+  stage: prepare
   script:
-    - "latexmk -pdf -output-directory=pdflatex/ thesis.tex"
-    - "latexmk -xelatex -output-directory=xelatex/ thesis.tex"
+    - cp latex/utuftthesis.cls tests/utuftthesis.cls
+    - "sed 's/version=final/version=draft/g' latex/thesis.tex > latex/thesis2.tex"
   artifacts:
     paths:
-      - "latex/pdflatex/thesis.pdf"
-      - "latex/xelatex/thesis.pdf"
+      - latex/thesis2.tex
+      - tests/utuftthesis.cls
 
-template_validator:
-  image: listx/texlive:2017
+draft_builder:
+  stage: build
+  script:
+    - cd latex
+    - "latexmk -pdf --shell-escape thesis2.tex"
+    - cp thesis2.pdf pdflatex.pdf
+    - "latexmk -CA thesis2.tex"
+    - "latexmk -xelatex --shell-escape thesis2.tex"
+    - cp thesis2.pdf xelatex.pdf
+  artifacts:
+    paths:
+      - "latex/pdflatex.pdf"
+      - "latex/xelatex.pdf"
+
+draft_validator:
   stage: test
   script:
-    - "pdfinfo latex/pdflatex/thesis.pdf |grep '^Pages: *13$'"
-    - "pdfinfo latex/xelatex/thesis.pdf |grep '^Pages: *13$'"
+    - "pdfinfo latex/pdflatex.pdf |grep '^Pages: *16$'"
+    - "pdfinfo latex/xelatex.pdf |grep '^Pages: *16$'"
 
-# PDF/A build: compiles pdflatex/final version of thesis.tex with pdfx (pdf/a-1b)
 pdfa_builder:
-  image: listx/texlive:2017
   stage: build
-  before_script:
-    - cd latex
   script:
-    - "sed 's/version=draft/version=final/g' thesis.tex > thesis2.tex"
-    - "latexmk -pdf -shell-escape -output-directory=pdfa/ thesis2.tex"
+    - cd latex
+    - "latexmk -pdf --shell-escape thesis.tex"
+    - "cp thesis.pdf pdflatex-pdfa.pdf"
+    - "latexmk -CA thesis.tex"
+    - "latexmk -xelatex --shell-escape thesis.tex"
+    - "cp thesis.pdf xelatex-pdfa.pdf"
   artifacts:
     paths:
-      - "latex/pdfa/thesis2.pdf"
+      - "latex/pdflatex-pdfa.pdf"
+      - "latex/xelatex-pdfa.pdf"
 
-# PDF/A validation: uses a custom build of verapdf. The official release won't work with Java > 7 atm. :-/
 pdfa_validator:
-  image: openjdk:11
   stage: test
-  before_script:
-    - "wget https://gitlab.utu.fi/jmjmak/veraPDF-apps/raw/integration/greenfield-apps-1.15.0-SNAPSHOT.jar?inline=false -O validator.jar"
   script:
-    - "java -cp validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v latex/pdfa/thesis2.pdf|grep '^PASS'"
+    - "pdfa-validate latex/pdflatex-pdfa.pdf|grep '^PASS'"
+    - "pdfa-validate latex/xelatex-pdfa.pdf|grep '^PASS'"
 
 xelatex_builder:
-  image: listx/texlive:2017
   stage: build
-  before_script:
-    - cd tests
   script:
+    - cd tests
     - "for i in *.tex; do latexmk -xelatex -output-directory=xelatex/ $i; done"
   artifacts:
     paths:
@@ -68,12 +82,27 @@ xelatex_builder:
       - tests/xelatex/test-finnish.pdf
       - tests/xelatex/test-hyperref.pdf
 
-pdflatex_builder:
-  image: listx/texlive:2017
-  stage: build
-  before_script:
-    - cd tests
+      
+xelatex_content_validator:
+  stage: test
   script:
+    - cd tests/xelatex
+    - "for i in *.pdf; do pdftotext $i; done"
+    - "grep '2 s., 5 liites.' test-app1.txt"
+    - "grep '2 s., 3 liites.' test-app2.txt"
+    - "grep '2 s., 1 liites.' test-app3.txt"
+    - "grep 'TkK-tutkielma, 2 s.$' test-app4.txt"
+    - "grep 'TkK-tutkielma, 3 s.$' test-app5.txt"
+    - "grep 'TURUN YLIOPISTO' test-finnish.txt"
+    - "grep 'TURUN YLIOPISTO' test-bilingual.txt"
+    - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
+    - "grep 'UNIVERSITY OF TURKU' test-english.txt"
+    - "pdfinfo test-hyperref.pdf |grep 'LaTeX with hyperref'"
+
+pdflatex_builder:
+  stage: build
+  script:
+    - cd tests
     - "for i in *.tex; do latexmk -pdf -output-directory=pdflatex/ $i; done"
   artifacts:
     paths:
@@ -86,40 +115,19 @@ pdflatex_builder:
       - tests/pdflatex/test-english.pdf
       - tests/pdflatex/test-finnish.pdf
       - tests/pdflatex/test-hyperref.pdf
-      
-xelatex_content_validator:
-  image: listx/texlive:2017
-  stage: test
-  before_script:
-    - cd tests/xelatex
-    - "for i in *.pdf; do pdftotext $i; done"
-  script:
-    - "grep '2 s., 5 liites.' test-app1.txt"
-    - "grep '2 s., 3 liites.' test-app2.txt"
-    - "grep '2 s., 1 liites.' test-app3.txt"
-    - "grep 'TkK -tutkielma, 2 s.$' test-app4.txt"
-    - "grep 'TkK -tutkielma, 3 s.$' test-app5.txt"
-    - "grep 'TURUN YLIOPISTO' test-finnish.txt"
-    - "grep 'TURUN YLIOPISTO' test-bilingual.txt"
-    - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
-    - "grep 'UNIVERSITY OF TURKU' test-english.txt"
-    - "pdfinfo test-hyperref.pdf |grep 'LaTeX with hyperref package'"
-
 
 pdflatex_content_validator:
-  image: listx/texlive:2017
   stage: test
-  before_script:
+  script:
     - cd tests/pdflatex
     - "for i in *.pdf; do pdftotext $i; done"
-  script:
     - "grep '2 s., 5 liites.' test-app1.txt"
     - "grep '2 s., 3 liites.' test-app2.txt"
     - "grep '2 s., 1 liites.' test-app3.txt"
-    - "grep 'TkK -tutkielma, 2 s.$' test-app4.txt"
-    - "grep 'TkK -tutkielma, 3 s.$' test-app5.txt"
+    - "grep 'TkK-tutkielma, 2 s.$' test-app4.txt"
+    - "grep 'TkK-tutkielma, 3 s.$' test-app5.txt"
     - "grep 'TURUN YLIOPISTO' test-finnish.txt"
     - "grep 'TURUN YLIOPISTO' test-bilingual.txt"
     - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
     - "grep 'UNIVERSITY OF TURKU' test-english.txt"
-    - "pdfinfo test-hyperref.pdf |grep 'LaTeX with hyperref package'"
+    - "pdfinfo test-hyperref.pdf |grep 'LaTeX with hyperref'"

@@ -1,0 +1,23 @@
+
+# see https://hub.docker.com/repository/docker/konttipoju/tinytex
+image: konttipoju/tinytex:2019-12g
+
+# first we build the PDF, then validate it
+stages:
+  - build
+  - validate
+
+# build latex/thesis.tex -> latex/thesis.pdf using pdflatex
+# shell-escape functionality is required by the minted package
+build:
+  script:
+    - cd latex
+    - latexmk -pdf --shell-escape thesis.tex
+artifacts:
+  paths:
+    - latex/thesis.pdf
+
+# a validation prints "PASS + something" is the file is PDF/A conformant
+validate:
+  script:
+    - pdfa-validate latex/thesis.pdf|grep '^PASS'

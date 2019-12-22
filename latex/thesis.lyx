@@ -5,7 +5,7 @@
 \save_transient_properties true
 \origin unavailable
 \textclass utuftthesis
-\options a4paper,12pt,language=finnish,version=draft,hidechapters=true,includereferences=false,realtimesnewroman=false,sharelatex=false,emptyfirstpages=true
+\options language=finnish,version=draft,mainfont=none,sharelatex=false,hidechapters=true,countbibpages=false,emptyfirstpages=true
 \use_default_options false
 \maintain_unincluded_children false
 \language finnish
@@ -64,7 +64,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
-\use_minted 0
+\use_minted 1
 \index Index
 \shortcut idx
 \color #008000
@@ -103,7 +103,8 @@ Document template suitable for use as a LaTeX master-file for master's thesis
 \begin_inset Newline newline
 \end_inset
 
-Compatible with: ShareLaTeX / PDFLaTeX / XeLaTeX.
+Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
+ The document class is described in utuftthesis.cls.
 \begin_inset Newline newline
 \end_inset
 
@@ -111,131 +112,7 @@ Compatible with: ShareLaTeX / PDFLaTeX / XeLaTeX.
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
-** HOW TO USE? **
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Want to write a thesis? Clone this template in ShareLaTeX or fork the department
-'s thesis git project.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-The utuftthesis.cls defines a new thesis class, which is based on the report
- class.
- It supports these new named parameters:
-\end_layout
-
-\begin_layout Plain Layout
-- paper: a4paper
-\end_layout
-
-\begin_layout Plain Layout
-- version: draft / final (default: draft) shows/hides [draft] in the header
-\end_layout
-
-\begin_layout Plain Layout
-- language: finnish / english (default: finnish) affects the general document
- appearance and hyphenation
-\end_layout
-
-\begin_layout Plain Layout
-- hidechapters: true / false (default: true) hides/shows the chapter/luku
- text at the beginning of each Chapter
-\end_layout
-
-\begin_layout Plain Layout
-- includereferences: true / false (default: false) include reference pages
- when calculating the total number of pages
-\end_layout
-
-\begin_layout Plain Layout
-- realtimesnewroman: true / false (default: false) use Times New Roman instead
- of LaTeX fonts with XeLaTeX.
- Requires the font to be installed on the system / provided in the document
- directory.
- Other fonts can be defined with 
-\backslash
-setmainfont.
-\end_layout
-
-\begin_layout Plain Layout
-- sharelatex: true / false (default: false) don't attempt to use (c) system
- fonts, instead read them from the project repository
-\end_layout
-
-\begin_layout Plain Layout
-- emptyfirstpages: true / false (default: true) clear the headers/footers
- for the 1st pages of text chapters
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-Traditionally the best places to learn (La)TeX are probably the manual pages
- for each package http://www.ctan.org/ and http://www.ctan.org/tex-archive/info/lsho
-rt/english/lshort.pdf.
- This new version (2.0) should be compatible with xelatex and biblatex which
- means that all source files can freely use normal UTF-8 text without resorting
- to ""legacy hacks".
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Note that PDF/A requirements don't allow PDF links, but if you want to provide
- a user friendly version of the thesis with links, use 
-\backslash
-hyperref
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-** Maintenance **
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Workflow: https://gitlab.utu.fi/ttweb/thesis -> master .lyx document exported
- as .tex documents -> repository content dumped to the sharelatex project
- template
-\end_layout
-
-\begin_layout Plain Layout
-Want to fix something in the template? Send a merge.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Relies on utuftthesis.cls for the document class definitions.
+HOW TO USE? See https://gitlab.utu.fi/ttweb/thesis
 \end_layout
 
 \end_inset
@@ -244,7 +121,7 @@ Relies on utuftthesis.cls for the document class definitions.
 \end_layout
 
 \begin_layout PubYear
-2018
+2019
 \end_layout
 
 \begin_layout PubMonth
@@ -329,7 +206,7 @@ tableofcontents
 
 \begin_layout Plain Layout
 
-%
+
 \backslash
 listoffigures
 \end_layout
@@ -345,7 +222,7 @@ listoffigures
 
 \begin_layout Plain Layout
 
-%
+
 \backslash
 listoftables
 \end_layout
@@ -356,30 +233,55 @@ listoftables
 
 \begin_layout Plain Layout
 
-% 'list of acronyms'
+% if you want a list of acronyms
 \end_layout
 
 \begin_layout Plain Layout
 
-%   - you may not need this at all
+
+\backslash
+listofacronyms
 \end_layout
 
 \begin_layout Plain Layout
 
-%   - create a chapter called List Of Acronyms (or whatever), which
 \end_layout
 
 \begin_layout Plain Layout
 
-%     should contain all your acronym definitions, e.g.
- 
+% change the name if the default doesn't sound right
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+algorithmname}{Ohjelmalistaus}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% 'list of X'
+\end_layout
+
+\begin_layout Plain Layout
+
+%   - it is also possible to define custom lists
 \end_layout
 
 \begin_layout Plain Layout
 
 %     
 \backslash
-chapter{List Of Acronyms} 
+chapter{List Of Xs} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -516,7 +418,7 @@ options "plain"
 status open
 
 \begin_layout Plain Layout
-Create your appendix chapters with command 
+Important! Create the appendix chapters with command 
 \backslash
 appchapter{some name} instead of 
 \backslash
@@ -533,15 +435,221 @@ Liitedokumentti
 \end_layout
 
 \begin_layout Standard
-Tässä esimerkki
-\begin_inset Newpage pagebreak
+Liitteen ohjelmakoodi 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Tyyppiluokka-Monad"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ kuvaa matemaattisen monadirakenteen pohjalta rakentuvan Haskellin tyyppiluokan.
+ Tyyppiluokan voi nähdä eräänlaisena abstraktina ohjelmointirajapintana
+ (API
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "API"
+symbol "API"
+description "Application Programming Interface"
+literal "false"
+
+\end_inset
+
+), joka muodostaa ohjelmoijalle abstraktin ohjelmointikielen käyttöliittymän
+ (UI
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+prefix "UI"
+symbol "UI"
+description "User Interface"
+literal "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement tbh
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Haskell"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Monad m where
+\end_layout
+
+\begin_layout Plain Layout
+
+    ( >>= )         :: m a -> (a -> m b) -> m b
+\end_layout
+
+\begin_layout Plain Layout
+
+    return          :: a                 -> m a
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    fail            :: String            -> m a
+\end_layout
+
+\begin_layout Plain Layout
+
+    (>>)            :: m a -> m b        -> m b
+\end_layout
+
+\begin_layout Plain Layout
+
+    m >> k          =  m >>= 
+\backslash
+_ -> k       -- default
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+instance Monad IO where  ...
+               -- omitted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tyyppiluokka 'Monad'.
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Tyyppiluokka-Monad"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-kaksisivuisesta liitteestä.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ensimmäisen liitteen toinen sivu.
+ Ohjelmakoodi 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Monadin-käyttöä."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ demonstroi vielä monadin käyttöä.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement tbh
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Haskell"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+main =
+\end_layout
+
+\begin_layout Plain Layout
+
+return "Your name:" >>=
+\end_layout
+
+\begin_layout Plain Layout
+
+putStr >>=
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+_ -> getLine >>=
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+n -> putStrLn ("Hey " ++ n)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Monadin käyttöä.
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Monadin-käyttöä."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Appendix
@@ -558,19 +666,6 @@ Tässä esimerkki
 
 \begin_layout Standard
 toisesta kaksisivuisesta liitteestä.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-main document ends here
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body
