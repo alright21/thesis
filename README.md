@@ -14,8 +14,8 @@ Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
 
 ## Main menu
 
- * [Docker build environment](web/docker.md): read this if you want to generate the
-   document locally using Docker or use a Git service (Gitlab / Github)
+ * [Docker build environment](web/docker.md): read this if you want to generate
+   the document locally using Docker or use a Git service (Gitlab / Github)
    for CI/CD.
 
  * [LaTeX virtual machine](web/vm.md): read this if you want to write the
@@ -23,6 +23,10 @@ Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
    USB distribution provided by the Department of Future Technologies.
    The distribution provides: Debian stable, TeX Live, LyX, Pandoc,
    TeX editors, Emacs, Vim, Pygments, Seafile, Chromium, Docker.
+
+ * [Using UTU ShareLaTeX](web/sharelatex.md): read this if you want to write
+   the document in the cloud using the real-time collaborative ShareLaTeX
+   service hosted by University of Turku.
 
  * [Using the thesis template](web/config.md): **you should read this**.
    Contains information on using and setting up the template.
