@@ -205,6 +205,8 @@
 \else
 \RequirePackage{listings}               % handle inclusion of source code.
                                         % note: does not support utf-8 properly!
+\newenvironment{minted}{\verbatim}{\endverbatim}
+\newcommand{\listingscaption}{\sourcecode}
 \fi
 
 %% some more suggestions
@@ -277,10 +279,12 @@
   \newcommand{\refs}{Lähdeluettelo}
   \newcommand{\appname}{Liitteet}
   \renewcommand{\nomname}{Termistö}
+  \newcommand{\sourcecode}{Ohjelmalistaus}
 }{
   \newcommand{\refs}{References}
   \newcommand{\appname}{Appendices}
   \renewcommand{\nomname}{List of acronyms}
+  \newcommand{\sourcecode}{Listing}
 }
 
 %% magic thesis types. more can be added
