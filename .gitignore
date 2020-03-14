@@ -18,4 +18,5 @@
 *.lot
 *.lof
 *.ilg
+*.synctex.gz
 _minted-*/
