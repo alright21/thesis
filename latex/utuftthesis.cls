@@ -368,14 +368,15 @@
 \renewcommand{\baselinestretch}{1.655}
   
 %% Modify the \printbibliography command
-\defbibheading{bibliography}{
+\defbibheading{bibliography}[\refs]{
   \ifutuftthesis@countbibpages
   \else
     % label here if we don't include the bibliography in the page count
     \label{endofpages}
   \fi
-  \chapter*{\refs}
-  \addcontentsline{toc}{chapter}{\refs}
+  \chapter*{#1}
+  \markboth{\MakeUppercase{#1}}{}
+  \addcontentsline{toc}{chapter}{#1}
 }
 
 %% backup the old \printbibliography
