@@ -10,14 +10,16 @@ stages:
 # build latex/thesis.tex -> latex/thesis.pdf using pdflatex
 # shell-escape functionality is required by the minted package
 build:
+  stage: build
   script:
     - cd latex
     - latexmk -pdf --shell-escape thesis.tex
-artifacts:
-  paths:
+  artifacts:
+    paths:
     - latex/thesis.pdf
 
 # a validation prints "PASS + something" is the file is PDF/A conformant
 validate:
+  stage: validate
   script:
     - pdfa-validate latex/thesis.pdf|grep '^PASS'
