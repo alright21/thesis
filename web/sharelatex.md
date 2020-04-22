@@ -1,8 +1,8 @@
 # Setting up ShareLaTeX
 
-The ShareLaTeX platform is hosted in-premises at UTU: https://tex.soft.utu.fi/
+A ShareLaTeX platform is hosted on-premises at UTU Software Engineering Laboratory: https://tex.soft.utu.fi/
 
-First, set up the sharelatex user account (ask https://www.utu.fi/fi/ihmiset/lauri-koivunen).
+Press register at the top right corner to register for the service.
 
 See the general LaTeX document guide for configuring the template.
 
