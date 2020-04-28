@@ -33,14 +33,14 @@
 \ProvidesClass{utuftthesis}[2019/05/28 UTU FT dept BSc/MSc thesis]
 
 %% package requirements for this template
-\RequirePackage{kvoptions}        % keyval-options, required by this class definition
-\RequirePackage{adjustbox}        % front page box on the right
-\RequirePackage{etoolbox}         % misc. tools
-\RequirePackage{ifthen}           % mainly: \langchoose and \switch (\ifstrequal doesn't work here?)
-\RequirePackage{ifxetex}          % for xelatex/pdflatex font selection
-\RequirePackage{fancyhdr}         % customized headers/footers
-\RequirePackage{xstring}          % string operations (parse the number of pages etc.)
-\RequirePackage[page]{totalcount} % the total number of pages (another option: zref-lastpage, @see https://tex.stackexchange.com/a/220564)
+\RequirePackage{kvoptions}                    % keyval-options, required by this class definition
+\RequirePackage{adjustbox}                    % front page box on the right
+\RequirePackage{etoolbox}                     % misc. tools
+\RequirePackage{ifthen}                       % mainly: \langchoose and \switch (\ifstrequal doesn't work here?)
+\RequirePackage{ifxetex}                      % for xelatex/pdflatex font selection
+\RequirePackage{fancyhdr}                     % customized headers/footers
+\RequirePackage{xstring}                      % string comparison
+\RequirePackage[lastpage,totpages,user]{zref} % page counting logic
 
 %% Custom package options
 %\DeclareStringOption[00]{year}
@@ -132,8 +132,6 @@
       \setmainfont{\utuftthesis@mainfont}
     }
   }
-\fi
-\ifxetex
 \else
   % JH: modified latin to UTF-8 encoding cues to make Scandinavian characters work
   \RequirePackage[T1]{fontenc}
@@ -369,11 +367,7 @@
   
 %% Modify the \printbibliography command
 \defbibheading{bibliography}[\refs]{
-  \ifutuftthesis@countbibpages
-  \else
-    % label here if we don't include the bibliography in the page count
-    \label{endofpages}
-  \fi
+  \zlabel{endofmaincontent}
   \chapter*{#1}
   \markboth{\MakeUppercase{#1}}{}
   \addcontentsline{toc}{chapter}{#1}
@@ -384,10 +378,7 @@
 
 \renewcommand{\printbibliography}{
   \oldprintbibliography
-    % label here if we include the bibliography in the page count
-  \ifutuftthesis@countbibpages
-    \label{endofpages}
-  \fi
+  \zlabel{endofbibliography}
 \langfin{
   \expandafter\selectlanguage\expandafter{\n@tivelang}
 }{
@@ -470,10 +461,6 @@
   \clearpage
 }
 
-%% used to detect the empty \totalpages on the first latex run
-%% @see http://ftp.acc.umu.se/mirror/CTAN/macros/generic/xstring/xstring-en.pdf
-\newcommand*{\IsInteger}[3]{\IfStrEq{#1}{ }{}{\IfInteger{#1}{#2}{#3}}}
-
 %% top part of the abstract page (since we use environments)
 \newcommand{\@bstracth}[1]{%
   \selectlanguage{#1}
@@ -491,15 +478,14 @@
   \item[\textsc{\@author}] \@title
   \end{entry}
   \thesistype{#1}, %
-  \IsInteger{\totalpages}{%
-    \pageref{endofpages} \pagesname{#1}%
-    \ifnum \totalpages > 0
-      , \totalpages\ \apppagesname{#1} \\
-    \else
-      \\
-    \fi
-  }{ \runagain{#1} \\
-  }
+  \ifutuftthesis@countbibpages
+    \zref@extractdefault{endofbibliography}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
+  \else
+    \zref@extractdefault{endofmaincontent}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
+  \fi
+  \newcommand\lastapppage{\zref@extractdefault{appendices}{abspage}{999}}%
+  \newcommand\apppagecount{\number\numexpr \ztotpages - \lastapppage + 1\relax}%
+  \IfStrEq*{\lastapppage}{999}{}{, \apppagecount\ \apppagesname{#1}} \\
   \labname{#1} \\
   \monthname{#1}{\m@nth} \ye@r\\
   \rule{\linewidth}{1 pt}
@@ -557,9 +543,6 @@
   \rhead{\thepage}
   \fancyfoot{}
   \cfoot{\version}
-  % the totalcount counter is only used for counting the appendices
-  % warning: fails if the document has over 65000 pages
-  \setcounter{totalcount@page}{-65000}
 }       
 
 %% postpone the doc style through these sections
@@ -582,18 +565,16 @@
   \renewcommand{\appendices}{}
   \clearpage
   \appendix
+  \zlabel{appendices}
   \addtocontents{toc}{\protect\contentsline{chapter}{\appname}{}\relax}
   \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter.\ ##1}}{}}
   \rhead{\thechapter-\arabic{page}}
-  \setcounter{page}{0}
   \renewcommand\thepage{\thechapter-\arabic{page}}
-  \setcounter{totalcount@page}{\utuftthesis@pagecountdelta}
 }
 
 %% use in place of \chapter
 \newcommand{\appchapter}[1]{%
   \appendices
-  \addtocounter{totalcount@page}{\value{page}}
   \clearpage
   \setcounter{page}{1}
   \chapter{#1}
