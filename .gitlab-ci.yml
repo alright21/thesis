@@ -8,7 +8,7 @@
 # files. In addition, minted requires some tuning to support different
 # output directories.
 
-image: konttipoju/tinytex:2019-12g
+image: konttipoju/tinytex:2020-04a
 
 stages:
  - prepare

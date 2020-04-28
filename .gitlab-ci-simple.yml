@@ -1,6 +1,6 @@
 
 # see https://hub.docker.com/repository/docker/konttipoju/tinytex
-image: konttipoju/tinytex:2019-12g
+image: konttipoju/tinytex:2020-04a
 
 # first we build the PDF, then validate it
 stages:
