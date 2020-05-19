@@ -7,7 +7,7 @@ Press register at the top right corner to register for the service.
 See the general LaTeX document guide for configuring the template.
 
 The following set of screenshots describes the process of exporting the 
-thesis template from the Gitlab to ShareLaTeX (exporting to Overleaf
+thesis template from the GitLab to ShareLaTeX (exporting to Overleaf
 differs slightly, but this instruction can be applied):
 
 ## Step 1: export the project

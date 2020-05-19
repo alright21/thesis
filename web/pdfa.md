@@ -42,9 +42,11 @@ Note that PDF/A support is a rather new feature in LaTeX, e.g. the pdfx
 consider compiling with a more recent LaTeX distribution. The template
 has been tested with TeXLive 2017+.
 
+### VeraPDF (generic instructions)
+
 A free [VeraPDF](https://verapdf.org/) tool can be used to test if the
 resulting PDF files are PDF/A conformant. Unfortunately, the official
-VeraPDF distribution may not build. Use the 1.15-SNAPSHOT
+VeraPDF distribution may not build. Use the snapshot
 [version hosted at UTU gitlab](https://gitlab.utu.fi/jmjmak/veraPDF-apps)
 instead.
 
@@ -56,9 +58,18 @@ $ latexmk -pdf -shell-escape thesis.tex
 $ java -cp validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v thesis.pdf
 ```
 
-The UTU build of the VeraPDF tool is also included in the
-[LaTeX Docker image](web/docker.md) and can be run by simply invoking
-`pdfa-validate <file.pdf>`. The [gitlab CI script](.gitlab-ci-simple.yml)
+### VeraPDF (Docker image)
+
+A headless Java 11 JRE is provided in the Docker image for VeraPDF
+powered PDF/A validation. The UTU build of the VeraPDF tool is also
+included in the [LaTeX Docker image](web/docker.md) and can be run by
+simply invoking:
+
+```bash
+$ pdfa-validate thesis.pdf
+```
+
+The [GitLab CI script](.gitlab-ci-simple.yml)
 in this project demonstrates the validation of CI/CD generated PDFs with
 this tool.
   

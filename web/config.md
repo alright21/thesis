@@ -7,32 +7,33 @@ You're free to organize the project as you wish. A sane default structure
 looks like this:
 
  - root
-   - .gitlab-ci.yml: configures CI/CD
-   - .gitignore: configures git to ignore temp files
-   - utuftthesis.clss: document class description
-   - thesis.xmpdata: metadata for PDF/A generation
-   - latexmkrc: build instructions for latexmk
-   - thesis.tex: main document (links to sub-documents)
-   - bibliography.bib: biblioraphy data (multiple bibs also possible)
-   - section-X.tex: sub-documents for sections
-   - images/: embedded images
-   - sources/: embedded source code listings
+   - `.gitlab-ci.yml`: configures CI/CD
+   - `.gitignore`: configures git to ignore temp files
+   - `utuftthesis.clss`: document class description
+   - `thesis.xmpdata`: metadata for PDF/A generation
+   - `latexmkrc`: build instructions for latexmk
+   - `thesis.tex`: main document (links to sub-documents)
+   - `bibliography.bib`: biblioraphy data (multiple bibs also possible)
+   - `section-X.tex`: sub-documents for sections
+   - `images/`: embedded images
+   - `sources/`: embedded source code listings
 
 In case you're using LyX, the following extra files are needed (the tex
 files can be generated from the lyx files):
 
  - root
-   - utuftthesis.layout: document class configuration for LyX
-   - thesis.lyx: main document (links to sub-documents)
-   - section-X.lyx: sub-documents for sections
+   - `utuftthesis.layout`: document class configuration for LyX
+   - `thesis.lyx`: main document (links to sub-documents)
+   - `section-X.lyx`: sub-documents for sections
 
 The standard files included in the template consist of:
 
 - The `latex` directory contains the document root. Everything from
   this directory can be moved to the project root, but make sure you'll
-  update the Gitlab CI, too.
+  update the GitLab CI, too.
 - The `tests` directory can be deleted. It contains an extensive test
   suite for the template.
+- The `web` directory can be deleted. It contains this documentation.
 - The document class file `utuftthesis.cls` is always required.
 - The `*.lyx` and `*.layout` files are only needed if you decide to
   use [LyX](https://www.lyx.org/), and can be deleted in other cases.
@@ -43,15 +44,15 @@ The documents are typically edited with
   - TeX editors
   - generic editors
   - LyX
-  - hosted cloud services (ShareLaTeX, Overleaf, or even Gitlab Web IDE)
+  - hosted cloud services ([ShareLaTeX, Overleaf](sharelatex.md), or even GitLab Web IDE)
 
 The documents are compiled with
-  - TeX -> directly with TeX utilities (pdflatex/xelatex/tectonic) -> PDF
-  - TeX -> LaTeX frontend (mklatex, arara etc.) -> PDF
-  - LyX -> TeX -> one of the previous two -> PDF
-  - LyX -> PDF
-  - Integrated build system (ShareLaTeX / Overleaf) -> PDF
-  - CI/CD pipeline (Gitlab) -> PDF artifact / publish site
+  - TeX → directly with TeX utilities (pdflatex/xelatex/tectonic) → PDF
+  - TeX → LaTeX frontend (mklatex, arara etc.) → PDF
+  - LyX → TeX → one of the previous two → PDF
+  - LyX → PDF
+  - [Integrated build system (ShareLaTeX / Overleaf) → PDF](sharelatex.md)
+  - [CI/CD pipeline (GitLab) → PDF artifact / publish site](docker.md#setting-up-gitlab-cicd)
 
 Note that when using TeX utilities directly, you need to make sure the
 document has been fully processed. Usually this requires multiple
@@ -177,7 +178,10 @@ The PDF/A generation mechanism is described in more detail in the
 
 ## Using the template
 
-Start by cloning the whole template repository.
+### Git
+
+Start by cloning the whole template repository (or fork the project
+in GitLab).
 The following command line instructions can be used for setting up
 a new thesis (replace MYNAME with your utu username):
 
@@ -188,7 +192,7 @@ $ git remote add mythesis https://gitlab.utu.fi/MYNAME/mythesis
 $ git push -u mythesis master
 ```
 
-If you'd like to use the Gitlab CI script, considering setting up
+If you'd like to use the GitLab CI script, considering setting up
 the simplified CI pipeline that does not run the full test suite
 (invoke these commands in the thesis/ directory):
 
@@ -211,13 +215,39 @@ $ git remote -v
 $ git push
 ```
 
-The project can be compiled with latexmk (pdfTeX):
+### Latexmk (PdfTeX)
+
+PdfTeX is the default engine for compiling the template. It offers
+better compatibility with most features.
+
+When using latexmk, the project can be compiled like so:
 
 ```bash
 $ latexmk -pdf -shell-escape thesis.tex
 ```
-XeLaTeX version can be compiled like so (OpenType/TrueType fonts):
+
+### Latexmk (XeTeX)
+
+XeTeX / XeLaTeX version is required if you want to use
+OpenType/TrueType fonts.
+
+When using latexmk, XeLaTeX version can be compiled like so:
 
 ```bash
 $ latexmk -xelatex -shell-escape thesis.tex
 ```
+
+### LyX
+
+LyX provides a graphical WYSIWYM interface for editing TeX-like
+LyX documents that can be converted to TeX. The template distribution
+contains the `utuftthesis.layout` document class description file
+for the same `utuftthesis.cls` as the one used by TeX documents.
+
+Start by editing the provided `thesis.lyx`. The file has been configured
+to use the custom `utuftthesis` document class.
+
+Depending on your LyX version, you may need to enable `-shell-escape`
+from the global LyX settings. Follow the program's instructions.
+When updating your TeX distribution, LyX may require reconfiguration.
+This functionality is available via the tools menu.
