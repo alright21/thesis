@@ -12,12 +12,12 @@ The `utuvm-latex` virtual machine contains preinstalled versions of
   * LyX (for WYSIWYM editing)
   * Pandoc for generating LaTeX documents from markdown sources
   * TeX editors (Gummy, Texworks, Texmaker, Texstudio)
-  * Generic editors (Emacs, Vim, Geany, nano )
+  * Generic editors (Emacs, Vim, Geany, nano)
   * PDF reader (Evince)
   * Pygments for syntax highlighting (minted)
   * Seafile client for storing the documents in the University's
     Seafile server.
-  * Docker, systemd-nspawn
+  * [Docker](docker.md#compiling-the-thesis-using-docker), systemd-nspawn
 
 The virtual machine also comes with a modern browser (Chromium) for editing
 documents in ShareLaTeX and Overleaf.
