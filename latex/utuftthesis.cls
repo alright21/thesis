@@ -30,7 +30,7 @@
 % ------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[2015/01/01]
-\ProvidesClass{utuftthesis}[2019/05/28 UTU FT dept BSc/MSc thesis]
+\ProvidesClass{utuftthesis}[2020/06/18 UTU FT dept BSc/MSc thesis]
 
 %% package requirements for this template
 \RequirePackage{kvoptions}                    % keyval-options, required by this class definition
@@ -58,6 +58,7 @@
 \DeclareBoolOption[false]{sharelatex}        % assume compilation inside sharelatex
 \DeclareBoolOption[false]{minted}            % use minted instead of listings (must enable -shell-escape!)
 \DeclareBoolOption[true]{emptyfirstpages}    % hide the header/footer of the first page of each chapter
+\DeclareBoolOption[true]{turnitinchecked}    % turnitin text
 
 
 %% Process given options
@@ -425,6 +426,17 @@
   \newenvironment{abstracten}{\@bstracth{english}}{\@bstractt{english}{\k@ywords}}
 }
 
+\newcommand\lastapppage{\zref@extractdefault{appendices}{abspage}{999}}
+\newcommand\apppagecount{\number\numexpr \ztotpages - \lastapppage + 1\relax}
+\newcommand{\pagecounttext}[1]{%
+  \ifutuftthesis@countbibpages
+    \zref@extractdefault{endofbibliography}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
+  \else
+    \zref@extractdefault{endofmaincontent}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
+  \fi
+  \IfStrEq*{\lastapppage}{999}{}{, \apppagecount\ \apppagesname{#1}}
+}
+
 %% title page, reuses the standard \maketitle
 \renewcommand*{\maketitle}{%
   \clearpage 
@@ -454,8 +466,11 @@
     \expandafter\forcsvlist\expandafter\\\expandafter{\s@pervisors}
   }
   \end{adjustbox}
-  \vspace*{\stretch{1}}\\
-  \scriptsize \turnitin
+  \vspace*{\stretch{1}}%
+  \ifutuftthesis@turnitinchecked
+    \\
+    \scriptsize \turnitin
+  \fi
   
   \renewcommand{\baselinestretch}{1.655}\normalsize
   \clearpage
@@ -478,14 +493,7 @@
   \item[\textsc{\@author}] \@title
   \end{entry}
   \thesistype{#1}, %
-  \ifutuftthesis@countbibpages
-    \zref@extractdefault{endofbibliography}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
-  \else
-    \zref@extractdefault{endofmaincontent}{page}{\zref@extractdefault{LastPage}{page}{0}} \pagesname{#1}%
-  \fi
-  \newcommand\lastapppage{\zref@extractdefault{appendices}{abspage}{999}}%
-  \newcommand\apppagecount{\number\numexpr \ztotpages - \lastapppage + 1\relax}%
-  \IfStrEq*{\lastapppage}{999}{}{, \apppagecount\ \apppagesname{#1}} \\
+  \pagecounttext{#1} \\
   \labname{#1} \\
   \monthname{#1}{\m@nth} \ye@r\\
   \rule{\linewidth}{1 pt}
