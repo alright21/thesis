@@ -1,6 +1,6 @@
 
 # see https://hub.docker.com/repository/docker/konttipoju/tinytex
-image: konttipoju/tinytex:2020-04a
+image: konttipoju/tinytex:2020-06c
 
 # build latex/thesis.tex -> latex/thesis.pdf using pdflatex
 # shell-escape functionality is required by the minted package

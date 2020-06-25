@@ -6,10 +6,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # combine into one run command to reduce image size
 RUN mkdir -p /usr/share/man/man1 && apt-get update && \
-    apt-get install -y perl wget libfontconfig1 openjdk-11-jre-headless poppler-utils python3-pygments pandoc && \
+    apt-get install -y perl wget libfontconfig1 fontconfig ghostscript openjdk-11-jre-headless poppler-utils python3-pygments python3-pandocfilters pandoc-citeproc pandoc && \
     wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh  && \
-    apt-get clean
+    apt-get clean && ln -s /usr/bin/python3 /usr/bin/python
     
+RUN wget http://ftdev.utu.fi/downloads/resources/greenfield-apps-1.15.0-SNAPSHOT.jar -O /validator.jar && \
+    echo 'java -cp /validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v "$@"' > /root/bin/pdfa-validate && \
+    chmod +x /root/bin/pdfa-validate
+
 ENV PATH="${PATH}:/root/bin"
 
 RUN tlmgr update --self && tlmgr install xetex scheme-small && fmtutil-sys --all
@@ -20,9 +24,4 @@ RUN tlmgr install adjustbox collectbox biblatex tracklang biblatex-ieee csquotes
     fontawesome chessboard skak glossaries datenumber datetime advdate multido todonotes \
     semantic syntax wasysym dashrule titlecaps pdfx ifnextok xmpincl blindtext minted \
     fvextra catchfile includernw algorithm2e shapepar hanging sectionbox euro nag nomencl \
-    filecontents zref && tlmgr path add
-
-RUN wget http://ftdev.utu.fi/downloads/resources/greenfield-apps-1.15.0-SNAPSHOT.jar -O /validator.jar && \
-    echo 'java -cp /validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v "$@"' > /root/bin/pdfa-validate && \
-    chmod +x /root/bin/pdfa-validate
-
+    filecontents zref collection-fontsrecommended collection-fontsextra epstopdf && tlmgr path add
