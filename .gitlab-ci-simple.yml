@@ -18,3 +18,14 @@ validate:
   stage: test
   script:
     - pdfa-validate latex/thesis.pdf|grep '^PASS'
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public/
+    - cp latex/thesis.pdf public/
+  only:
+    - master
+  artifacts:
+    paths:
+      - public/
