@@ -560,6 +560,8 @@
 \apptocmd{\listoffigures}{\renewcommand{\startpages}{\initdocstyle}}{}{}
 \pretocmd{\listoftables}{\renewcommand{\startpages}{}}{}{}
 \apptocmd{\listoftables}{\renewcommand{\startpages}{\initdocstyle}}{}{}
+\pretocmd{\listofacronyms}{\renewcommand{\startpages}{}}{}{}
+\apptocmd{\listofacronyms}{\renewcommand{\startpages}{\initdocstyle}}{}{}
 
 %% finally initialize the main document style
 \pretocmd{\chapter}{\startpages}{}{}
