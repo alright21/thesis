@@ -47,6 +47,7 @@
 \DeclareStringOption[draft]{version}         % draft/final version
 \DeclareStringOption[a4paper]{paper}         % @see ctan/macros/latex/base/classes, 3.1 Setting Paper Size
 \DeclareStringOption[finnish]{language}      % document's main language
+\DeclareStringOption[ieee]{bibstyle}         % document's bibliography style
 \DeclareStringOption[-1]{pagecountdelta}     % workaround for bugs in the app page count
 \DeclareStringOption[a-2b,mathxmp]{pdfaconformance}  % PDF-A conformance level (a-1b, a-2b, a-2u, a-3b, a-3u, or 'none')
 \DeclareStringOption[split]{biburlbreak}     % how to handle long urls in bibliography ('ragged', 'split', or 'none')
@@ -59,6 +60,8 @@
 \DeclareBoolOption[false]{minted}            % use minted instead of listings (must enable -shell-escape!)
 \DeclareBoolOption[true]{emptyfirstpages}    % hide the header/footer of the first page of each chapter
 \DeclareBoolOption[true]{turnitinchecked}    % turnitin text
+\DeclareBoolOption[false]{turnitinnewpage}   % turnitin text on a new page
+\DeclareBoolOption[false]{hidetocpagenum}    % hide the roman page numbers in toc / lists
 
 
 %% Process given options
@@ -211,7 +214,6 @@
 %% some more suggestions
 %\RequirePackage[l2tabu, orthodox]{nag} % checks whether outdated latex features are being used
 %\RequirePackage[all,warning]{onlyamsmath}
-%\RequirePackage{sverb}                 % enhanced handling of verbatim stuff
 %\RequirePackage{titlecaps}             % capitalized words in titles
 %\RequirePackage{microtype}
 %\RequirePackage{amssymb}
@@ -231,17 +233,18 @@
   \setcounter{biburllcpenalty}{7000}
   \setcounter{biburlucpenalty}{8000}
 }{}
+
+%% bibliography, new engine
 \ifdefstring{\utuftthesis@biburlbreak}{ragged}{
-  \RequirePackage[style=ieee,backend=biber,block=ragged]{biblatex} % bibliography, new engine
+  \RequirePackage[style=\utuftthesis@bibstyle,backend=biber,block=ragged]{biblatex}
 }
 {
-  \RequirePackage[style=ieee,backend=biber]{biblatex} % bibliography, new engine
+  \RequirePackage[style=\utuftthesis@bibstyle,backend=biber]{biblatex} 
 }
 
-\RequirePackage{fvextra}               % minted
+\RequirePackage{fvextra}                % minted
 \RequirePackage{csquotes}               % quotations
 \RequirePackage{datetime2}              % month names
-
 
 
 %% !! Update these only if the document's main language is not finnish or english !!
@@ -413,17 +416,17 @@
 
 %% the first abstract
 \langfin{
-  \renewenvironment{abstract}{\expandafter\@bstracth\expandafter{\n@tivelang}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywords}}
+  \renewenvironment{abstract}{\expandafter\@bstracth\expandafter{\n@tivelang}{1}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywords}}
 
   %% the second abstract environment
   %% always in english - but can be omitted if the document uses a single language
-  \newenvironment{abstracten}{\@bstracth{english}}{\@bstractt{english}{\k@ywordstwo}}
+  \newenvironment{abstracten}{\@bstracth{english}{2}}{\@bstractt{english}{\k@ywordstwo}}
 }{
-  \renewenvironment{abstract}{\@bstracth{english}}{\@bstractt{english}{\k@ywords}}
+  \renewenvironment{abstract}{\@bstracth{english}{1}}{\@bstractt{english}{\k@ywords}}
 
   %% the second abstract environment
   %% always in english - just an alias for 'abstract'
-  \newenvironment{abstracten}{\@bstracth{english}}{\@bstractt{english}{\k@ywords}}
+  \newenvironment{abstracten}{\@bstracth{english}{1}}{\@bstractt{english}{\k@ywords}}
 }
 
 \newcommand\lastapppage{\zref@extractdefault{appendices}{abspage}{999}}
@@ -439,7 +442,10 @@
 
 %% title page, reuses the standard \maketitle
 \renewcommand*{\maketitle}{%
-  \clearpage 
+  %\clearpage 
+  \begin{titlepage}
+  \setcounter{page}{0}
+  \pagenumbering{alph}
   \thispagestyle{empty}
   \vspace*{\stretch{1}}
   \vspace{3mm}
@@ -468,22 +474,31 @@
   \end{adjustbox}
   \vspace*{\stretch{1}}%
   \ifutuftthesis@turnitinchecked
-    \\
-    \scriptsize \turnitin
+    \ifutuftthesis@turnitinnewpage
+      \newpage
+      \thispagestyle{empty}
+      \vspace*{\stretch{1}}
+    \else
+      \\
+    \fi
+    \scriptsize \noindent{\turnitin}
   \fi
   
+  \end{titlepage}
   \renewcommand{\baselinestretch}{1.655}\normalsize
   \clearpage
 }
 
 %% top part of the abstract page (since we use environments)
-\newcommand{\@bstracth}[1]{%
+\newcommand{\@bstracth}[2]{%
   \selectlanguage{#1}
   \setlength{\headheight}{0 pt}
   \setlength{\headsep}{0 pt}
   \addtolength\topmargin{-0.54 cm}
   \renewcommand{\baselinestretch}{1}\normalsize
   \clearpage
+  \pagenumbering{alph}
+  \addtocounter{page}{#2}
   \thispagestyle{empty}
   \noindent
   \begin{minipage}[\textheight]{\linewidth}
@@ -510,7 +525,6 @@
   \end{entry}
   \end{minipage}
   \clearpage
-  \setcounter{page}{0}
   \setlength{\headheight}{12 pt}
   \setlength{\headsep}{24 pt}
   \setlength{\topmargin}{0 mm}
@@ -528,6 +542,12 @@
 %% now optional
 \newcommand{\startpages}{\initdocstyle}
 
+\newcommand{\inittocstyle}{%
+  \ifutuftthesis@hidetocpagenum
+    \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0 pt}}
+  \fi
+}
+
 %% initializes the settings for main document content
 \newcommand{\initdocstyle}{%
   \renewcommand{\startpages}{}
@@ -539,7 +559,7 @@
   \clearpage
   % clear 1st page headers/footers per request
   \ifutuftthesis@emptyfirstpages
-  \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0 pt}}
+    \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0 pt}}
   \fi
   \pagenumbering{arabic}
   \setcounter{page}{1}
@@ -554,7 +574,7 @@
 }       
 
 %% postpone the doc style through these sections
-\pretocmd{\tableofcontents}{\renewcommand{\startpages}{}}{}{}
+\pretocmd{\tableofcontents}{\renewcommand{\startpages}{}\inittocstyle}{}{}
 \apptocmd{\tableofcontents}{\renewcommand{\startpages}{\initdocstyle}}{}{}
 \pretocmd{\listoffigures}{\renewcommand{\startpages}{}}{}{}
 \apptocmd{\listoffigures}{\renewcommand{\startpages}{\initdocstyle}}{}{}

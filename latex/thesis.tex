@@ -1,60 +1,39 @@
-%% LyX 2.3.3 created this file.  For more info, see http://www.lyx.org/.
-%% Do not edit unless you really know what you are doing.
-\documentclass[language=finnish,version=final,mainfont=none,sharelatex=false,hidechapters=true,countbibpages=false,emptyfirstpages=true]{utuftthesis}
+% Document template suitable for use as a LaTeX master-file for master's
+% thesis in University of Turku Department of Future Technologies.
+
+% HOW TO USE? See https://ttweb.utugit.fi/thesis/doc/overview/
+
+\documentclass[language=finnish,version=final,mainfont=none,sharelatex=false]{utuftthesis}
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 \usepackage{float}
+\usepackage[caption=false]{subfig}
 
-\makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+% Define the algorithm environment
+%\makeatletter
 \providecommand\textquotedblplain{%
   \bgroup\addfontfeatures{Mapping=}\char34\egroup}
-%% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
 \floatstyle{ruled}
 \newfloat{algorithm}{tbp}{loa}
 \providecommand{\algorithmname}{Algoritmi}
 \floatname{algorithm}{\protect\algorithmname}
-
-\@ifundefined{showcaptionsetup}{}{%
- \PassOptionsToPackage{caption=false}{subfig}}
-\usepackage{subfig}
-\makeatother
-
-\renewcommand{\listingscaption}{Ohjelmalistaus}
+%\makeatother
 
 \addbibresource{Bibliografia.bib}
-\begin{document}
-\begin{comment}
-Document template suitable for use as a LaTeX master-file for master's
-thesis in University of Turku Department of Future Technologies.\\
-\\
-Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
-The document class is described in utuftthesis.cls.\\
-\\
-HOW TO USE? See https://gitlab.utu.fi/ttweb/thesis
-\end{comment}
 
+\begin{document}
 
 \pubyear{2019}
-
 \pubmonth{6}
-
 \publab{Labran nimi}
-
 \publaben{Laboratory Name}
-
 \pubtype{tkk}
 \title{Name of Thesis}
 \author{My Name}
 
 \maketitle
 \input{abstract.tex}
-
-% empty pagestyle for table of contents etc.
-% otherwise you'll get simple page style with roman page numbers
-\pagestyle{empty}
 
 % mandatory
 \tableofcontents
@@ -69,18 +48,11 @@ HOW TO USE? See https://gitlab.utu.fi/ttweb/thesis
 \listofacronyms
 
 % change the name if the default doesn't sound right
-\renewcommand{\algorithmname}{Ohjelmalistaus}% 'list of X'
-%   - it is also possible to define custom lists
-%     \chapter{List Of Xs} 
-%   - the secnumdepth trickery is needed because acronyms are as a
-%     standard chapter and we are faking '\listofacronyms'
-%
-%\setcounter{secnumdepth}{-1}
-%\input{your acronym chapter's file name}
-%\setcounter{secnumdepth}{2}% setup page numbering, page counter, etc.%
-\begin{comment}
-The thesis starts here.
+\renewcommand{\algorithmname}{\listingscaption}
 
+% The thesis starts here.
+
+\begin{comment}
 To better organize things, create a new tex file for each chapter
 and input it below.
 
@@ -95,9 +67,8 @@ Good luck!
 %\input{file_name_of_chapter_x}
 %\input{file_name_of_chapter_y}
 
-\begin{comment}
-The thesis main content ends here.
-\end{comment}
+% The thesis main content ends here.
+
 \printbibliography
 
 \begin{comment}
@@ -133,7 +104,7 @@ instance Monad IO where  ...               -- omitted
 
 \newpage{}
 
-Ensimmäisen liitteen toinen sivu. Ohjelmakoodi \ref{alg:Monadin-k=0000E4ytt=0000F6=0000E4.}
+Ensimmäisen liitteen toinen sivu. Ohjelmalistaus \ref{alg:Monadin-kayttoa}
 demonstroi vielä monadin käyttöä.
 
 \begin{algorithm}[tbh]
@@ -145,7 +116,7 @@ putStr >>=
 \n -> putStrLn ("Hey " ++ n)
 \end{minted}
 
-\caption{Monadin käyttöä.\label{alg:Monadin-k=0000E4ytt=0000F6=0000E4.}}
+\caption{Monadin käyttöä.\label{alg:Monadin-kayttoa}}
 \end{algorithm}
 
 
