@@ -417,15 +417,17 @@
 \langfin{
   \renewenvironment{abstract}{\expandafter\@bstracth\expandafter{\n@tivelang}{1}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywords}}
 
-  %% the second abstract environment
-  %% always in english - but can be omitted if the document uses a single language
+  %% the second abstract environment in english
+  %% can be omitted if the document uses a single language
   \newenvironment{abstracten}{\@bstracth{english}{2}}{\@bstractt{english}{\k@ywordstwo}}
+  \newenvironment{abstracttwo}{\@bstracth{english}{2}}{\@bstractt{english}{\k@ywordstwo}}
 }{
   \renewenvironment{abstract}{\@bstracth{english}{1}}{\@bstractt{english}{\k@ywords}}
 
-  %% the second abstract environment
-  %% always in english - just an alias for 'abstract'
-  \newenvironment{abstracten}{\@bstracth{english}{1}}{\@bstractt{english}{\k@ywords}}
+  %% the second abstract environment in native language
+  %% can be omitted if the document uses a single language
+  \newenvironment{abstracten}{\expandafter\@bstracth\expandafter{\n@tivelang}{1}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywordstwo}}
+  \newenvironment{abstracttwo}{\expandafter\@bstracth\expandafter{\n@tivelang}{1}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywordstwo}}
 }
 
 \newcommand\lastapppage{\zref@extractdefault{appendices}{abspage}{999}}
