@@ -413,7 +413,6 @@
     \addtolength{\leftmargin}{\labelsep}}}
 {\end{list}}
 
-
 %% the first abstract
 \langfin{
   \renewenvironment{abstract}{\expandafter\@bstracth\expandafter{\n@tivelang}{1}}{\expandafter\@bstractt\expandafter{\n@tivelang}{\k@ywords}}
@@ -500,8 +499,8 @@
   \pagenumbering{alph}
   \addtocounter{page}{#2}
   \thispagestyle{empty}
+  \pagestyle{empty}
   \noindent
-  \begin{minipage}[\textheight]{\linewidth}
   \University{#1}\\
   \department{#1}
   \begin{entry}{}
@@ -511,25 +510,25 @@
   \pagecounttext{#1} \\
   \labname{#1} \\
   \monthname{#1}{\m@nth} \ye@r\\
-  \rule{\linewidth}{1 pt}
+  \rule{\linewidth}{1 pt}%
+  \setlength{\parindent}{0em}%
   \\
 }
 
 %% bottom part of the abstract page
 \newcommand{\@bstractt}[2]{%
-  \selectlanguage{#1}
-  \bigskip
-  \\
+  \selectlanguage{#1}%
+  \bigskip%
   \begin{entry}{}
     \item[\kwlabel{#1}] #2
   \end{entry}
-  \end{minipage}
+  \setlength{\parindent}{1.5em}%
   \clearpage
-  \setlength{\headheight}{12 pt}
-  \setlength{\headsep}{24 pt}
-  \setlength{\topmargin}{0 mm}
-  \renewcommand{\baselinestretch}{1.655}\normalsize
-  
+  \setlength{\headheight}{12 pt}%
+  \setlength{\headsep}{24 pt}%
+  \setlength{\topmargin}{0 mm}%
+  \renewcommand{\baselinestretch}{1.655}%
+  \normalsize%
   % roman numbering for table of contents etc.
   \pagenumbering{roman}
 }
