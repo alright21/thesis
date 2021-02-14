@@ -179,6 +179,8 @@
     %% @see https://en.wikipedia.org/wiki/PDF/A#Conformance_levels_and_versions
     \RequirePackage{colorprofiles}
     \RequirePackage[\utuftthesis@pdfaconformance]{pdfx}
+    %% fix a temporary bug in texlive 2021
+    \catcode30=12
     
     %% hides the underlining of links with red (by hyperref)
     %% @see http://mirrors.ctan.org/macros/latex/contrib/hyperref/doc/manual.pdf
@@ -264,7 +266,7 @@
 \newcommand\publaben[1]{\renewcommand\p@blaben{#1}}
 \newcommand\pubtype[1]{\newcommand\p@btype{#1}}
 \newcommand\supervisors[1]{\renewcommand\s@pervisors{#1}}
-\newcommand{\department}[1]{\langchoose{#1}{Tulevaisuuden teknologioiden laitos}{Department of Future Technologies}}
+\newcommand{\department}[1]{\langchoose{#1}{Tietotekniikan laitos}{Department of Computing}}
 \newcommand{\university}[1]{\langchoose{#1}{Turun yliopisto}{University of Turku}}
 \newcommand{\University}[1]{\langchoose{#1}{\MakeUppercase{Turun yliopisto}}{\MakeUppercase{University of Turku}}}
 \newcommand{\labname}[1]{\langchoose{#1}{\p@blab}{\p@blaben}}
@@ -272,7 +274,6 @@
 \newcommand{\apppagesname}[1]{\langchoose{#1}{liites.}{app. p.}}
 \newcommand{\kwlabel}[1]{\langchoose{#1}{Asiasanat}{Keywords}}
 \newcommand{\supervisorstext}{\langfin{Tarkastajat}{Supervisors}}
-\newcommand{\runagain}[1]{\langchoose{#1}\langfin{aja LaTeX uudestaan}{please rerun LaTeX}}
 \newcommand{\turnitin}{\langfin{Turun yliopiston laatujärjestelmän mukaisesti tämän julkaisun alkuperäisyys on tarkastettu Turnitin OriginalityCheck-järjestelmällä.}
 {The originality of this thesis has been checked in accordance with the University of Turku quality assurance system using the Turnitin OriginalityCheck service.}}
 
