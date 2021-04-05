@@ -10,7 +10,7 @@ RUN mkdir -p /usr/share/man/man1 && apt-get update && \
     wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh  && \
     apt-get clean && ln -s /usr/bin/python3 /usr/bin/python
     
-RUN wget https://tech.utugit.fi/soft/tools/veraPDF-apps/files/greenfield-apps-1.17.0-SNAPSHOT.jar -O /validator.jar && \
+RUN wget https://tech.utugit.fi/soft/tools/veraPDF-apps/greenfield-apps-latest.jar -O /validator.jar && \
     echo 'java -cp /validator.jar org.verapdf.apps.GreenfieldCliWrapper --format text -v "$@"' > /root/bin/pdfa-validate && \
     chmod +x /root/bin/pdfa-validate
 
