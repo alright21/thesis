@@ -1,6 +1,7 @@
+# due to https://docs.docker.com/docker-hub/download-rate-limit/
+# the texlive image is hosted @ https://gitlab.utu.fi/tech/soft/thesis-builder
 
-# see https://hub.docker.com/repository/docker/konttipoju/tinytex
-image: konttipoju/tinytex:2020-06c
+image: registry.gitlab.utu.fi/tech/soft/thesis-builder:latest
 
 # build latex/thesis.tex -> latex/thesis.pdf using pdflatex
 # shell-escape functionality is required by the minted package
