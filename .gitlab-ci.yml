@@ -22,8 +22,9 @@ stages:
 prepare_tests:
   stage: prepare
   script:
-    - cp latex/utuftthesis.cls tests/utuftthesis.cls
-    - "sed 's/version=final/version=draft/g' latex/thesis.tex > latex/thesis2.tex"
+    - cd latex
+    - cp utuftthesis.cls ../tests/utuftthesis.cls
+    - "sed 's/version=final/version=draft/g' thesis.tex > thesis2.tex"
   artifacts:
     paths:
       - latex/thesis2.tex
@@ -40,8 +41,8 @@ draft_builder:
     - cp thesis2.pdf xelatex.pdf
   artifacts:
     paths:
-      - "latex/pdflatex.pdf"
-      - "latex/xelatex.pdf"
+      - latex/pdflatex.pdf
+      - latex/xelatex.pdf
 
 draft_validator:
   stage: test
@@ -54,14 +55,15 @@ pdfa_builder:
   script:
     - cd latex
     - "latexmk -pdf --shell-escape thesis.tex"
-    - "cp thesis.pdf pdflatex-pdfa.pdf"
+    - cp thesis.pdf pdflatex-pdfa.pdf
     - "latexmk -CA thesis.tex"
     - "latexmk -xelatex --shell-escape thesis.tex"
-    - "cp thesis.pdf xelatex-pdfa.pdf"
+    - cp thesis.pdf xelatex-pdfa.pdf
   artifacts:
     paths:
-      - "latex/pdflatex-pdfa.pdf"
-      - "latex/xelatex-pdfa.pdf"
+      - latex/thesis.pdf
+      - latex/pdflatex-pdfa.pdf
+      - latex/xelatex-pdfa.pdf
 
 pdfa_validator:
   stage: test
