@@ -9,3 +9,6 @@ Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
 ## Documentation
 
 **<https://tech.utugit.fi/soft/thesis-doc/doc/overview/>**
+
+Also visit the [generated preview page](https://ttweb.utugit.fi/thesis)
+for a live demo of the rendered document.
