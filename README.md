@@ -8,4 +8,4 @@ Compatible with: ShareLaTeX, pdfLaTeX, LuaLaTeX, XeLaTeX, LyX, latexmk.
 
 ## Documentation
 
-**<https://ttweb.utugit.fi/thesis/doc/overview/>**
+**<https://tech.utugit.fi/soft/thesis-doc/doc/overview/>**
