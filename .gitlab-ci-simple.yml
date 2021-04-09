@@ -19,12 +19,13 @@ validate:
   stage: test
   script:
     - pdfa-validate latex/thesis.pdf|grep '^PASS'
+  allow_failure: true
 
 pages:
   stage: deploy
   script:
-    - mkdir -p public/
-    - cp latex/thesis.pdf public/
+    - wget https://tech.utugit.fi/soft/tools/sitegen/sitegen.jar -O sitegen.jar
+    - java -jar sitegen.jar -pdfjs
   only:
     - master
   artifacts:

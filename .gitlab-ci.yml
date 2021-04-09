@@ -17,6 +17,7 @@ stages:
  - prepare
  - build
  - test
+ - deploy
 
 prepare_tests:
   stage: prepare
@@ -134,3 +135,15 @@ pdflatex_content_validator:
     - "grep 'UNIVERSITY OF TURKU' test-bilingual.txt"
     - "grep 'UNIVERSITY OF TURKU' test-english.txt"
     - "pdfinfo test-hyperref.pdf |grep 'LaTeX with hyperref'"
+
+pages:
+  stage: deploy
+  script:
+    - cp latex/thesis.pdf .
+    - wget https://tech.utugit.fi/soft/tools/sitegen/sitegen.jar -O sitegen.jar
+    - java -jar sitegen.jar -pdfjs
+  only:
+    - master
+  artifacts:
+    paths:
+      - public/
