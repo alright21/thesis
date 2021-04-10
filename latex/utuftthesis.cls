@@ -246,7 +246,12 @@
 
 \RequirePackage{fvextra}                % minted
 \RequirePackage{csquotes}               % quotations
-\RequirePackage{datetime2}              % month names
+
+\langfin{
+  \RequirePackage[fi,en-US]{datetime2}        % month names
+}{
+  \RequirePackage[en-US,fi]{datetime2}        % month names
+}
 
 
 %% !! Update these only if the document's main language is not finnish or english !!
