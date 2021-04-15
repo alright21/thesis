@@ -9,9 +9,9 @@
 # output directories.
 
 # due to https://docs.docker.com/docker-hub/download-rate-limit/
-# the texlive image is hosted @ https://gitlab.utu.fi/tech/soft/thesis-builder
+# the texlive image is hosted @ https://gitlab.utu.fi/tech/soft/thesis/builder
 
-image: registry.gitlab.utu.fi/tech/soft/thesis-builder:latest
+image: registry.gitlab.utu.fi/tech/soft/thesis/builder:latest
 
 draft_version:
   stage: build
@@ -44,7 +44,7 @@ final_version:
 testsuite_pdflatex:
   stage: build
   script:
-    - wget https://tech.utugit.fi/soft/thesis-testsuite/testsuite.tar.gz
+    - wget https://tech.utugit.fi/soft/thesis/testsuite/testsuite.tar.gz
     - tar xf testsuite.tar.gz
     - cp latex/*cls .
     - ./bash_unit test_pdflatex.sh
@@ -52,7 +52,7 @@ testsuite_pdflatex:
 testsuite_xelatex:
   stage: build
   script:
-    - wget https://tech.utugit.fi/soft/thesis-testsuite/testsuite.tar.gz
+    - wget https://tech.utugit.fi/soft/thesis/testsuite/testsuite.tar.gz
     - tar xf testsuite.tar.gz
     - cp latex/*cls .
     - ./bash_unit test_xelatex.sh
@@ -61,7 +61,7 @@ pages:
   stage: deploy
   script:
     - cp latex/thesis.pdf .
-    - wget https://tech.utugit.fi/soft/tools/sitegen/sitegen.jar -O sitegen.jar
+    - wget https://tech.utugit.fi/soft/thesis/sitegen/sitegen.jar -O sitegen.jar
     - java -jar sitegen.jar -pdfjs
   only:
     - master

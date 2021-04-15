@@ -1,7 +1,7 @@
 # due to https://docs.docker.com/docker-hub/download-rate-limit/
 # the texlive image is hosted @ https://gitlab.utu.fi/tech/soft/thesis-builder
 
-image: registry.gitlab.utu.fi/tech/soft/thesis-builder:latest
+image: registry.gitlab.utu.fi/tech/soft/thesis/builder:latest
 
 # build latex/thesis.tex -> latex/thesis.pdf using pdflatex
 # shell-escape functionality is required by the minted package
@@ -24,7 +24,7 @@ validate:
 pages:
   stage: deploy
   script:
-    - wget https://tech.utugit.fi/soft/tools/sitegen/sitegen.jar -O sitegen.jar
+    - wget https://tech.utugit.fi/soft/thesis/sitegen/sitegen.jar -O sitegen.jar
     - java -jar sitegen.jar -pdfjs
   only:
     - master
